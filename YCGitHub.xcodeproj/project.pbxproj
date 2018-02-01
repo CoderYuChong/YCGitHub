@@ -12,9 +12,13 @@
 		C0FE7FEB20230B6E00CA7E8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0FE7FE920230B6E00CA7E8D /* Main.storyboard */; };
 		C0FE7FED20230B6E00CA7E8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0FE7FEC20230B6E00CA7E8D /* Assets.xcassets */; };
 		C0FE7FF020230B6E00CA7E8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0FE7FEE20230B6E00CA7E8D /* LaunchScreen.storyboard */; };
+		C0FE7FF9202311D100CA7E8D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE7FF8202311D000CA7E8D /* R.generated.swift */; };
+		EBB370603A520D4622B32F62 /* Pods_YCGitHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB94DA2357B80357D0E61AF0 /* Pods_YCGitHub.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		277567E66643A4ED39F170B5 /* Pods-YCGitHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCGitHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-YCGitHub/Pods-YCGitHub.release.xcconfig"; sourceTree = "<group>"; };
+		A6A4755A68D9BC3E02E5C417 /* Pods-YCGitHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCGitHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCGitHub/Pods-YCGitHub.debug.xcconfig"; sourceTree = "<group>"; };
 		C0FE7FE220230B6E00CA7E8D /* YCGitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YCGitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0FE7FE520230B6E00CA7E8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0FE7FE720230B6E00CA7E8D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		C0FE7FEC20230B6E00CA7E8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0FE7FEF20230B6E00CA7E8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0FE7FF120230B6E00CA7E8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0FE7FF8202311D000CA7E8D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		CB94DA2357B80357D0E61AF0 /* Pods_YCGitHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YCGitHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBB370603A520D4622B32F62 /* Pods_YCGitHub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DA1E46C0F31CB23F228E177 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A6A4755A68D9BC3E02E5C417 /* Pods-YCGitHub.debug.xcconfig */,
+				277567E66643A4ED39F170B5 /* Pods-YCGitHub.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		43747A79C502AAF2B7773092 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB94DA2357B80357D0E61AF0 /* Pods_YCGitHub.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C0FE7FD920230B6E00CA7E8D = {
 			isa = PBXGroup;
 			children = (
 				C0FE7FE420230B6E00CA7E8D /* YCGitHub */,
 				C0FE7FE320230B6E00CA7E8D /* Products */,
+				3DA1E46C0F31CB23F228E177 /* Pods */,
+				43747A79C502AAF2B7773092 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +80,7 @@
 		C0FE7FE420230B6E00CA7E8D /* YCGitHub */ = {
 			isa = PBXGroup;
 			children = (
+				C0FE7FF8202311D000CA7E8D /* R.generated.swift */,
 				C0FE7FE520230B6E00CA7E8D /* AppDelegate.swift */,
 				C0FE7FE720230B6E00CA7E8D /* ViewController.swift */,
 				C0FE7FE920230B6E00CA7E8D /* Main.storyboard */,
@@ -71,9 +98,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0FE7FF420230B6E00CA7E8D /* Build configuration list for PBXNativeTarget "YCGitHub" */;
 			buildPhases = (
+				2B588E968957E039FDEC19FC /* [CP] Check Pods Manifest.lock */,
+				C0FE7FF72023112500CA7E8D /* ShellScript */,
 				C0FE7FDE20230B6E00CA7E8D /* Sources */,
 				C0FE7FDF20230B6E00CA7E8D /* Frameworks */,
 				C0FE7FE020230B6E00CA7E8D /* Resources */,
+				A54053FB23FBA8EE8F32AEC4 /* [CP] Embed Pods Frameworks */,
+				3EB41202822A8B281335F5B8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,6 +162,77 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2B588E968957E039FDEC19FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YCGitHub-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3EB41202822A8B281335F5B8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YCGitHub/Pods-YCGitHub-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A54053FB23FBA8EE8F32AEC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-YCGitHub/Pods-YCGitHub-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YCGitHub/Pods-YCGitHub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0FE7FF72023112500CA7E8D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C0FE7FDE20230B6E00CA7E8D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -138,6 +240,7 @@
 			files = (
 				C0FE7FE820230B6E00CA7E8D /* ViewController.swift in Sources */,
 				C0FE7FE620230B6E00CA7E8D /* AppDelegate.swift in Sources */,
+				C0FE7FF9202311D100CA7E8D /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +375,7 @@
 		};
 		C0FE7FF520230B6E00CA7E8D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6A4755A68D9BC3E02E5C417 /* Pods-YCGitHub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -286,6 +390,7 @@
 		};
 		C0FE7FF620230B6E00CA7E8D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 277567E66643A4ED39F170B5 /* Pods-YCGitHub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
