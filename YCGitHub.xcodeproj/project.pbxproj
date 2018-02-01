@@ -7,26 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A236FA120233FF600075130 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A236FA020233FF600075130 /* LaunchScreen.storyboard */; };
+		6A236FAA2023437300075130 /* RepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A236FA92023437300075130 /* RepositoriesViewController.swift */; };
+		6A236FAC2023439700075130 /* Repositories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A236FAB2023439700075130 /* Repositories.storyboard */; };
 		C0FE7FE620230B6E00CA7E8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE7FE520230B6E00CA7E8D /* AppDelegate.swift */; };
 		C0FE7FE820230B6E00CA7E8D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE7FE720230B6E00CA7E8D /* ViewController.swift */; };
 		C0FE7FEB20230B6E00CA7E8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0FE7FE920230B6E00CA7E8D /* Main.storyboard */; };
 		C0FE7FED20230B6E00CA7E8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0FE7FEC20230B6E00CA7E8D /* Assets.xcassets */; };
-		C0FE7FF020230B6E00CA7E8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0FE7FEE20230B6E00CA7E8D /* LaunchScreen.storyboard */; };
 		C0FE7FF9202311D100CA7E8D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FE7FF8202311D000CA7E8D /* R.generated.swift */; };
 		EBB370603A520D4622B32F62 /* Pods_YCGitHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB94DA2357B80357D0E61AF0 /* Pods_YCGitHub.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		277567E66643A4ED39F170B5 /* Pods-YCGitHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCGitHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-YCGitHub/Pods-YCGitHub.release.xcconfig"; sourceTree = "<group>"; };
+		6A236FA020233FF600075130 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6A236FA92023437300075130 /* RepositoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewController.swift; sourceTree = "<group>"; };
+		6A236FAB2023439700075130 /* Repositories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Repositories.storyboard; sourceTree = "<group>"; };
 		A6A4755A68D9BC3E02E5C417 /* Pods-YCGitHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCGitHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCGitHub/Pods-YCGitHub.debug.xcconfig"; sourceTree = "<group>"; };
 		C0FE7FE220230B6E00CA7E8D /* YCGitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YCGitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0FE7FE520230B6E00CA7E8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0FE7FE720230B6E00CA7E8D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C0FE7FEA20230B6E00CA7E8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C0FE7FEC20230B6E00CA7E8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C0FE7FEF20230B6E00CA7E8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0FE7FF120230B6E00CA7E8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C0FE7FF8202311D000CA7E8D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		C0FE7FF8202311D000CA7E8D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = YCGitHub/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		CB94DA2357B80357D0E61AF0 /* Pods_YCGitHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YCGitHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -59,6 +63,68 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6A236FA22023403F00075130 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6A236FA52023417D00075130 /* Repositories */,
+				6A236FA32023405300075130 /* Main */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		6A236FA32023405300075130 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C0FE7FE920230B6E00CA7E8D /* Main.storyboard */,
+				C0FE7FE520230B6E00CA7E8D /* AppDelegate.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		6A236FA42023408700075130 /* SupportFile */ = {
+			isa = PBXGroup;
+			children = (
+				C0FE7FF8202311D000CA7E8D /* R.generated.swift */,
+				6A236FA020233FF600075130 /* LaunchScreen.storyboard */,
+				C0FE7FEC20230B6E00CA7E8D /* Assets.xcassets */,
+				C0FE7FF120230B6E00CA7E8D /* Info.plist */,
+			);
+			name = SupportFile;
+			sourceTree = "<group>";
+		};
+		6A236FA52023417D00075130 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				6A236FA8202341C900075130 /* Model */,
+				6A236FA7202341C200075130 /* View */,
+				6A236FA6202341B400075130 /* Controller */,
+				6A236FAB2023439700075130 /* Repositories.storyboard */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		6A236FA6202341B400075130 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6A236FA92023437300075130 /* RepositoriesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6A236FA7202341C200075130 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6A236FA8202341C900075130 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C0FE7FD920230B6E00CA7E8D = {
 			isa = PBXGroup;
 			children = (
@@ -80,13 +146,9 @@
 		C0FE7FE420230B6E00CA7E8D /* YCGitHub */ = {
 			isa = PBXGroup;
 			children = (
-				C0FE7FF8202311D000CA7E8D /* R.generated.swift */,
-				C0FE7FE520230B6E00CA7E8D /* AppDelegate.swift */,
+				6A236FA22023403F00075130 /* Classes */,
+				6A236FA42023408700075130 /* SupportFile */,
 				C0FE7FE720230B6E00CA7E8D /* ViewController.swift */,
-				C0FE7FE920230B6E00CA7E8D /* Main.storyboard */,
-				C0FE7FEC20230B6E00CA7E8D /* Assets.xcassets */,
-				C0FE7FEE20230B6E00CA7E8D /* LaunchScreen.storyboard */,
-				C0FE7FF120230B6E00CA7E8D /* Info.plist */,
 			);
 			path = YCGitHub;
 			sourceTree = "<group>";
@@ -154,8 +216,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0FE7FF020230B6E00CA7E8D /* LaunchScreen.storyboard in Resources */,
+				6A236FA120233FF600075130 /* LaunchScreen.storyboard in Resources */,
 				C0FE7FED20230B6E00CA7E8D /* Assets.xcassets in Resources */,
+				6A236FAC2023439700075130 /* Repositories.storyboard in Resources */,
 				C0FE7FEB20230B6E00CA7E8D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,7 +292,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/YCGitHub\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -238,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A236FAA2023437300075130 /* RepositoriesViewController.swift in Sources */,
 				C0FE7FE820230B6E00CA7E8D /* ViewController.swift in Sources */,
 				C0FE7FE620230B6E00CA7E8D /* AppDelegate.swift in Sources */,
 				C0FE7FF9202311D100CA7E8D /* R.generated.swift in Sources */,
@@ -253,14 +317,6 @@
 				C0FE7FEA20230B6E00CA7E8D /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		C0FE7FEE20230B6E00CA7E8D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C0FE7FEF20230B6E00CA7E8D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -380,11 +436,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = YCGitHub/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.youkastation.YCGitHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -395,11 +452,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = YCGitHub/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.youkastation.YCGitHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
