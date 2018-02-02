@@ -1,21 +1,30 @@
 PODS:
   - Alamofire (4.6.0)
+  - HandyJSON (4.0.0-beta.1)
   - Kingfisher (4.6.1)
+  - MJRefresh (3.1.15.3)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
+  - SwiftMessages (4.1.0)
 
 DEPENDENCIES:
   - Alamofire
+  - HandyJSON (= 4.0.0-beta.1)
   - Kingfisher
+  - MJRefresh
   - R.swift
+  - SwiftMessages
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  HandyJSON: 428bb18e2c34c2a77361accebf90cf64e4f74118
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
 
-PODFILE CHECKSUM: 3875bc2b1fa4ba226be961864fd2689a21f27bcd
+PODFILE CHECKSUM: ba496852cd9108ebc5c2ad74c4802454ca8a8d76
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.4.0.beta.2
