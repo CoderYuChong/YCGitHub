@@ -7,43 +7,46 @@
 //
 
 import UIKit
+import XLPagerTabStrip
 
-class TrendingViewController: UIViewController {
-
+class TrendingViewController: TwitterPagerTabStripViewController {
+//    override var settings: TwitterPagerTabStripSettings 
     override func viewDidLoad() {
+        settings.style.titleColor = .black
+        settings.style.selectedDotColor = .blue;
+        settings.style.dotColor = .lightGray;
+        
         super.viewDidLoad()
+
         loadData()
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        let repositories = RepositoriesTrendingViewController()
+        let develpoer = DevelpoerTrendingViewController();
+        return [repositories,develpoer]
     }
-    */
-
+    
 }
 
 extension TrendingViewController: NetworkAgent {
    fileprivate func loadData() {
-//    =java&since=weekly
-//
-    let trendingRequest =  TrendingRequest(lang: "java")
-//    trendingRequest.si
+    let trendingRequest =  TrendingRequest(lang: "java", timeType: .daily)
     request(trendingRequest) { (response) in
         if let response = response {
             let trending = response as TrendingList
-            
+            guard let items = trending.items else {
+                return
+            }
+            for item in items {
+                print(item.repo_link ?? "iiiiiiii")
+            }
+            print("------")
         }
     }
     }

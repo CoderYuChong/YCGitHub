@@ -10,22 +10,24 @@
 import Foundation
 import HandyJSON
 struct TrendingRequest: BaseRequest {
-    
-    var lang: String
     enum since: String {
         case daily
         case weekly
         case monthly
     }
     
+    var lang: String
+    var timeType: since = .daily
+
     typealias Response = TrendingList
     var path: String {
         return "repo?"
     }
+    
     func parameters() -> [String : String] {
         var dic = Dictionary<String, String>()
         dic["lang"] = lang
-        dic["since"] = "weekly"
+        dic["since"] = timeType.rawValue
         return dic
     }
     
@@ -33,12 +35,11 @@ struct TrendingRequest: BaseRequest {
 }
 struct TrendingList: Decodable {
    
-    static func keyPath() -> String? {
-        return "items";
-    }
+//    static func keyPath() -> String? {
+//        return "";
+//    }
     
     var items: [TrendingModel]?
-
 }
 
 struct TrendingModel: HandyJSON {
@@ -49,6 +50,4 @@ struct TrendingModel: HandyJSON {
     var forks: String?
     var lang: String?
     var added_stars: String?
-
-    
 }

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Main View Controller-->
         <scene sceneID="Dea-Hy-jkA">
             <objects>
-                <navigationController id="hBd-wi-BcS" sceneMemberID="viewController">
+                <navigationController id="hBd-wi-BcS" customClass="MainViewController" customModule="YCGitHub" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rNE-Ha-jo8">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

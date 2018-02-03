@@ -29,18 +29,18 @@
         <!--View Controller-->
         <scene sceneID="1Fr-b0-IZB">
             <objects>
-                <viewController id="hZD-xd-wqz" customClass="ViewController" customModule="YCGitHub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hZD-xd-wqz" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9wX-Wj-5dh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.99607843137254903" green="0.32941176470588235" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="spK-f0-YNa"/>
                     </view>
                     <navigationItem key="navigationItem" id="jeW-nj-uXP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1H-b1-9c5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-42" y="242"/>
+            <point key="canvasLocation" x="-319" y="242"/>
         </scene>
     </scenes>
 </document>

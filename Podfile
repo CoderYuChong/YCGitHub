@@ -12,4 +12,6 @@ target 'YCGitHub' do
   pod 'HandyJSON', '4.0.0-beta.1'
   pod 'SwiftMessages'
   pod 'MJRefresh'
+  pod 'XLPagerTabStrip'
+  pod 'ESTabBarController-swift'
 end
