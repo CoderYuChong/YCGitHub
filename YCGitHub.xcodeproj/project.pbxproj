@@ -16,6 +16,7 @@
 		6A236FA120233FF600075130 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A236FA020233FF600075130 /* LaunchScreen.storyboard */; };
 		6A236FAA2023437300075130 /* RepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A236FA92023437300075130 /* RepositoriesViewController.swift */; };
 		6A236FAC2023439700075130 /* Repositories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A236FAB2023439700075130 /* Repositories.storyboard */; };
+		6A2B2C3D2025FE0D0015CFD5 /* YCRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B2C3C2025FE0D0015CFD5 /* YCRefreshNormalHeader.swift */; };
 		C003A5FD20240687004D70EF /* Languages.plist in Resources */ = {isa = PBXBuildFile; fileRef = C003A5FC20240687004D70EF /* Languages.plist */; };
 		C003A60620240F91004D70EF /* Languages.json in Resources */ = {isa = PBXBuildFile; fileRef = C003A60520240F91004D70EF /* Languages.json */; };
 		C003A60920241CAE004D70EF /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C003A60820241CAE004D70EF /* UIColor-Extension.swift */; };
@@ -49,6 +50,7 @@
 		6A236FA020233FF600075130 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A236FA92023437300075130 /* RepositoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewController.swift; sourceTree = "<group>"; };
 		6A236FAB2023439700075130 /* Repositories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Repositories.storyboard; sourceTree = "<group>"; };
+		6A2B2C3C2025FE0D0015CFD5 /* YCRefreshNormalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YCRefreshNormalHeader.swift; sourceTree = "<group>"; };
 		A6A4755A68D9BC3E02E5C417 /* Pods-YCGitHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCGitHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCGitHub/Pods-YCGitHub.debug.xcconfig"; sourceTree = "<group>"; };
 		C003A5FC20240687004D70EF /* Languages.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Languages.plist; sourceTree = "<group>"; };
 		C003A60520240F91004D70EF /* Languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Languages.json; sourceTree = "<group>"; };
@@ -107,10 +109,10 @@
 			isa = PBXGroup;
 			children = (
 				C0ECF694202464EB002D7AAF /* Trending */,
-				C0ECF657202434BD002D7AAF /* Tool */,
 				C003A6072024106C004D70EF /* Extension */,
 				6A236FA52023417D00075130 /* Repositories */,
 				6A236FA32023405300075130 /* Main */,
+				C0ECF657202434BD002D7AAF /* Tool */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -173,6 +175,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		6A2B2C3B2025FDDC0015CFD5 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				6A2B2C3C2025FE0D0015CFD5 /* YCRefreshNormalHeader.swift */,
+			);
+			path = Refresh;
+			sourceTree = "<group>";
+		};
 		C003A6072024106C004D70EF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +197,7 @@
 		C0ECF657202434BD002D7AAF /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				6A2B2C3B2025FDDC0015CFD5 /* Refresh */,
 				C0ECF68E20245DCC002D7AAF /* NetworkAgent.swift */,
 				C0ECF68F20245DCC002D7AAF /* Form.swift */,
 				C0ECF68C202454CD002D7AAF /* RequestTool.swift */,
@@ -374,6 +385,7 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 			);
@@ -385,6 +397,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 			);
@@ -423,6 +436,7 @@
 				C0ECF699202465B1002D7AAF /* TrendingViewController.swift in Sources */,
 				C0ECF65B20244196002D7AAF /* NotificationCenter-Extension.swift in Sources */,
 				C0ECF69C2024667A002D7AAF /* TrendingModel.swift in Sources */,
+				6A2B2C3D2025FE0D0015CFD5 /* YCRefreshNormalHeader.swift in Sources */,
 				C0ECF69E20246798002D7AAF /* BaseForm.swift in Sources */,
 				C0ECF65D202442E7002D7AAF /* UserDefault-Extension.swift in Sources */,
 				6A0F0B4D202498880006C11B /* DevelpoerTrendingViewController.swift in Sources */,

@@ -7,6 +7,7 @@ PODS:
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
+  - SnapKit (4.0.0)
   - SwiftMessages (4.1.0)
   - XLPagerTabStrip (8.0.0)
 
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - Kingfisher
   - MJRefresh
   - R.swift
+  - SnapKit
   - SwiftMessages
   - XLPagerTabStrip
 
@@ -28,9 +30,10 @@ SPEC CHECKSUMS:
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   XLPagerTabStrip: d1ab378af0923320ec0b5eab11d7b2f803d31261
 
-PODFILE CHECKSUM: 8bb92c90af7ada2138789f646ee61e79b1678a20
+PODFILE CHECKSUM: cd4624804ceb7693682612c0d92e691486086e3c
 
 COCOAPODS: 1.4.0

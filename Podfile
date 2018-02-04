@@ -8,6 +8,7 @@ target 'YCGitHub' do
   # Pods for YCGitHub
   pod 'Alamofire'
   pod 'Kingfisher'
+  pod 'SnapKit'
   pod 'R.swift'
   pod 'HandyJSON', '4.0.0-beta.1'
   pod 'SwiftMessages'

@@ -10,7 +10,7 @@ import UIKit
 import XLPagerTabStrip
 
 class TrendingViewController: TwitterPagerTabStripViewController {
-//    override var settings: TwitterPagerTabStripSettings 
+    
     override func viewDidLoad() {
         settings.style.titleColor = .black
         settings.style.selectedDotColor = .blue;
