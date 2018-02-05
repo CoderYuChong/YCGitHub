@@ -9,14 +9,15 @@
 
 import Foundation
 import HandyJSON
+enum since: String {
+    case daily
+    case weekly
+    case monthly
+}
+
 struct TrendingRequest: BaseRequest {
-    enum since: String {
-        case daily
-        case weekly
-        case monthly
-    }
-    
-    var lang: String
+
+    var lang: String?
     var timeType: since = .daily
 
     typealias Response = TrendingList

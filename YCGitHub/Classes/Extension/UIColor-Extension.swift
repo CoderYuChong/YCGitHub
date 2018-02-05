@@ -41,7 +41,6 @@ extension UIColor {
         Scanner.init(string: rString).scanHexInt32(&r)
         Scanner.init(string: gString).scanHexInt32(&g)
         Scanner.init(string: bString).scanHexInt32(&b)
-        printLog(CGFloat(r))
 
         self.init(r: CGFloat(r), g: CGFloat(g), b: CGFloat(b), alpha: alpha)
     }

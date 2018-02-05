@@ -37,17 +37,24 @@ extension UserDefaultSettable {
         let key = nameSpace(key)
         UserDefaults.standard.set(value, forKey: key)
     }
-    static func string(forkey key: UserDefaultKey) -> Int {
-        return UserDefaults.standard.integer(forKey: nameSpace(key))
+    static func string(forkey key: UserDefaultKey) -> String {
+        return UserDefaults.standard.string(forKey: nameSpace(key)) ?? ""
     }
 }
 
 extension UserDefaults {
     
-    struct Account: UserDefaultSettable {
+    struct LanguageScreeningDeveloper: UserDefaultSettable {
         enum UserDefaultKey: String {
-            case name
+            case language
+            case since
         }
     }
     
+    struct LanguageScreeningRepositories: UserDefaultSettable {
+        enum UserDefaultKey: String {
+            case language
+            case since
+        }
+    }
 }

@@ -11,25 +11,17 @@ import XLPagerTabStrip
 import SnapKit
 import MJRefresh
 
-class RepositoriesTrendingViewController: UIViewController, IndicatorInfoProvider {
+class RepositoriesTrendingViewController: UITableViewController, IndicatorInfoProvider {
     
     var itemInfo: IndicatorInfo = "Repositories"
-    lazy var tableView: UITableView = {
-        
-        let tableView = UITableView(frame: .zero, style: .plain)
-            
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        return tableView
-    }()
-
+    var languageName: String = UserDefaults.LanguageScreeningRepositories.string(forkey: .language)
+    var languageSince: String = UserDefaults.LanguageScreeningRepositories.string(forkey: .since)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .orange
+//        view.backgroundColor = .orange
 //        view.translatesAutoresizingMaskIntoConstraints = false
-        // Do any additional setup after loading the view.
-        setupUI()
         setupRefresh()
     }
 
@@ -40,50 +32,51 @@ class RepositoriesTrendingViewController: UIViewController, IndicatorInfoProvide
 
 }
 
-/// MARK: UI
+// MARK: UI
 extension RepositoriesTrendingViewController {
-   fileprivate func setupUI() {
-        view .addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
-             make.edges.equalTo(self.view)
+    fileprivate func setupRefresh() {
+        tableView.headerRefresh(target: self, refreshingAction: #selector(loadData), beginRefreshing: true)
+        tableView.footerRefresh(target: self, refreshingAction: #selector(loadData), automaticallyRefresh: true, triggerAutomaticallyRefreshPercent: 30)
+        
+    }
+}
+
+// MARK: Network
+extension RepositoriesTrendingViewController: NetworkAgent {
+    @objc func loadData() {
+        let trendingRequest =  TrendingRequest(lang: languageName, timeType: since(rawValue: languageSince)!)
+        request(trendingRequest) { (response) in
+            if let response = response {
+                let trending = response as TrendingList
+                guard let items = trending.items else {
+                    return
+                }
+              
+                
+            }
         }
     }
     
-    fileprivate func setupRefresh() {
-        tableView.headerRefresh(target: self, refreshingAction: #selector(loadData), beginRefreshing: false)
-        tableView.bottomRefresh(target: self, refreshingAction: #selector(loadData), automaticallyRefresh: true, triggerAutomaticallyRefreshPercent: 30)
-        
+    func refreshData() {
+        tableView.mj_header.beginRefreshing()
     }
 }
-/// MARK: target-action
+
+// MARK: delegate-datasource
 extension RepositoriesTrendingViewController {
-    @objc func loadData() {
-        printLog("--------")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            self.tableView.mj_header.endRefreshing()
-            self.tableView.mj_footer.endRefreshing()
-        }
-        
-    }
-}
-
-
-
-extension RepositoriesTrendingViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 30;
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let ID = "dtr"
         let cell = UITableViewCell(style: .default, reuseIdentifier: ID)
         cell.textLabel?.text = "这是第" + String(indexPath.row) + "行"
         return cell;
     }
 }
-
 
 
 

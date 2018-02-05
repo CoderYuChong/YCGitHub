@@ -33,7 +33,7 @@
                     <view key="view" contentMode="scaleToFill" id="9wX-Wj-5dh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.99607843137254903" green="0.32941176470588235" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.1803921568627451" green="0.74509803921568629" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="spK-f0-YNa"/>
                     </view>
                     <navigationItem key="navigationItem" id="jeW-nj-uXP"/>

@@ -13,14 +13,6 @@ class MainViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-        //    [UINavigationBar appearance].tintColor = [UIColor blackColor];
-        //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-        //    CGSize navBarSize = CGSizeMake(kScreenWidth, 64);
-        //    [self.navigationBar setBackgroundImage:[UIImage imageWithColor:kAppTintColor andSize:navBarSize] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-        //    [self.navigationBar setTitleTextAttributes:@{
-        //                                                 NSForegroundColorAttributeName : [UIColor blackColor],
-        //                                                 NSFontAttributeName : [UIFont fontWithName:@"Helvetica Neue" size:15.f]
-        //                                                 }];
         // Do any additional setup after loading the view.
     }
 
@@ -29,8 +21,16 @@ class MainViewController: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     fileprivate func setupNavBar() {
-        UINavigationBar.appearance().tintColor = .black
-    
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.setBackgroundImage(UIImage(color: navBarbackgroundColor), for: .default)
+        navigationBarAppearance.tintColor = themeColor
+        let textAttributes = [
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: navTitleFontSize),
+            NSAttributedStringKey.foregroundColor: navBarTitleColor
+            ]
+        
+        navigationBarAppearance.titleTextAttributes = textAttributes
+
     }
     
 

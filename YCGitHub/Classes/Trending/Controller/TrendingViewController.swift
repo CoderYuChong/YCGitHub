@@ -11,14 +11,15 @@ import XLPagerTabStrip
 
 class TrendingViewController: TwitterPagerTabStripViewController {
     
+//    var languageName: String = {
+//        
+//    }
+    
     override func viewDidLoad() {
         settings.style.titleColor = .black
         settings.style.selectedDotColor = .blue;
         settings.style.dotColor = .lightGray;
-        
         super.viewDidLoad()
-
-        loadData()
         
     }
 
@@ -34,21 +35,62 @@ class TrendingViewController: TwitterPagerTabStripViewController {
     
 }
 
-extension TrendingViewController: NetworkAgent {
-   fileprivate func loadData() {
-    let trendingRequest =  TrendingRequest(lang: "java", timeType: .daily)
-    request(trendingRequest) { (response) in
-        if let response = response {
-            let trending = response as TrendingList
-            guard let items = trending.items else {
-                return
-            }
-            for item in items {
-                print(item.repo_link ?? "iiiiiiii")
-            }
-            print("------")
-        }
-    }
-    }
 
+extension TrendingViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let destinationViewController = segue.destination as? MainViewController,
+            let languageVC = destinationViewController.topViewController as? LanguageScreeningViewController else {
+            return
+        }
+        
+        var selectedLanguage: String?
+        var selectedTime: String?
+        
+        switch self.currentIndex {
+        case 0:
+            selectedLanguage = UserDefaults.LanguageScreeningRepositories.string(forkey: .language)
+            selectedTime = UserDefaults.LanguageScreeningRepositories.string(forkey: .since)
+        case 1:
+            selectedLanguage = UserDefaults.LanguageScreeningDeveloper.string(forkey: .language)
+            selectedTime = UserDefaults.LanguageScreeningDeveloper.string(forkey: .since)
+        default:
+            selectedLanguage = ""
+            selectedTime = ""
+        }
+        if selectedLanguage?.count == 0 {
+            selectedLanguage = "所有语言"
+        }
+        languageVC.selectedLanguage = selectedLanguage
+        languageVC.selectedTime = selectedTime
+        languageVC.deleagte = self
+    }
 }
+
+
+extension TrendingViewController: LanguageScreeningProtocol {
+    func languageScreening(selectedLanguage: String, selectedTime: String, isReload: Bool) {
+        if !isReload {
+            return
+        }
+        let currentVC = viewControllers[currentIndex]
+        
+        if let repositoriesVC = currentVC as? RepositoriesTrendingViewController{
+             UserDefaults.LanguageScreeningRepositories.set(value: selectedTime, forKey: .since)
+            UserDefaults.LanguageScreeningRepositories.set(value: selectedLanguage, forKey: .language)
+
+            repositoriesVC.refreshData()
+        } else if let develpoerVC = currentVC as? DevelpoerTrendingViewController {
+            UserDefaults.LanguageScreeningDeveloper.set(value: selectedTime, forKey: .since)
+            UserDefaults.LanguageScreeningDeveloper.set(value: selectedLanguage, forKey: .language)
+            develpoerVC.refreshData()
+
+        }
+        
+    }
+}
+
+
+
+
+

@@ -25,8 +25,8 @@ extension MainTabBarViewController {
         
         let repositories = R.storyboard.repositories().instantiateInitialViewController();
         let trendingVC = R.storyboard.trending().instantiateInitialViewController();
-        repositories?.tabBarItem = ESTabBarItem.init(ExampleBouncesContentView(), title: "Home", image: UIImage(named: "tabbar_me_normal"), selectedImage: UIImage(named: "tabbar_me_selected"))
-        trendingVC?.tabBarItem = ESTabBarItem.init(ExampleBouncesContentView(), title: "Find", image: UIImage(named: "tabbar_home_selected"), selectedImage: UIImage(named: "tabbar_home_normal"))
+        trendingVC?.tabBarItem = ESTabBarItem.init(ExampleBouncesContentView(), title: "Trending", image: R.image.tabbar_trending_normal(), selectedImage: R.image.tabbar_profile_selected())
+        repositories?.tabBarItem = ESTabBarItem.init(ExampleBouncesContentView(), title: "Profile", image: R.image.tabbar_profile_normal(), selectedImage: R.image.tabbar_profile_selected())
         
         self.viewControllers = [trendingVC!, repositories!];
     }

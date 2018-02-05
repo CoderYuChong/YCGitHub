@@ -16,7 +16,7 @@ extension UIScrollView {
         let header =  MJRefreshNormalHeader()
         header.stateLabel.isHidden = true
         header.lastUpdatedTimeLabel.isHidden = true
-        header.arrowView.image = R.image.tabbar_home_normal()
+        header.arrowView.image = R.image.icon_arrow()
         header.setRefreshingTarget(target, refreshingAction: refreshingAction)
         self.mj_header = header
         if beginRefreshing {
@@ -24,7 +24,7 @@ extension UIScrollView {
         }
         
     }
-    func bottomRefresh(target: Any, refreshingAction: Selector, automaticallyRefresh: Bool = true, triggerAutomaticallyRefreshPercent: CGFloat = 1.0) {
+    func footerRefresh(target: Any, refreshingAction: Selector, automaticallyRefresh: Bool = true, triggerAutomaticallyRefreshPercent: CGFloat = 1.0) {
         // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
         let footer = MJRefreshAutoNormalFooter(refreshingTarget: target, refreshingAction: refreshingAction)
         // 禁止自动加载
@@ -36,7 +36,21 @@ extension UIScrollView {
         
     }
     
+    func beginRefreshing() {
+        self.mj_header.beginRefreshing()
+    }
     
+    func endHeaderRefreshing() {
+        self.mj_header.endRefreshing()
+    }
+    
+    func endFooterRefreshing() {
+        self.mj_footer.endRefreshing()
+    }
+    
+    func endRefreshingWithNoMoreData() {
+        self.mj_footer.endRefreshingWithNoMoreData()
+    }
     
     
 }
