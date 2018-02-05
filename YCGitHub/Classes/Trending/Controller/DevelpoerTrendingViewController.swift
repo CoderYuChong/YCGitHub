@@ -11,7 +11,7 @@ import XLPagerTabStrip
     
 class DevelpoerTrendingViewController: UITableViewController, IndicatorInfoProvider {
     
-    var itemInfo: IndicatorInfo = "Develpoer"
+    var itemInfo: IndicatorInfo = "Develpoers"
     
     var languageName: String = UserDefaults.LanguageScreeningDeveloper.string(forkey: .language)
     var languageSince: String = UserDefaults.LanguageScreeningDeveloper.string(forkey: .since)

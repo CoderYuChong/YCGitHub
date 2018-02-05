@@ -10,11 +10,7 @@ import UIKit
 import XLPagerTabStrip
 
 class TrendingViewController: TwitterPagerTabStripViewController {
-    
-//    var languageName: String = {
-//        
-//    }
-    
+
     override func viewDidLoad() {
         settings.style.titleColor = .black
         settings.style.selectedDotColor = .blue;
@@ -28,6 +24,7 @@ class TrendingViewController: TwitterPagerTabStripViewController {
         // Dispose of any resources that can be recreated.
     }
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        printLog("-------pagerTabStripController--------")
         let repositories = RepositoriesTrendingViewController()
         let develpoer = DevelpoerTrendingViewController();
         return [repositories,develpoer]

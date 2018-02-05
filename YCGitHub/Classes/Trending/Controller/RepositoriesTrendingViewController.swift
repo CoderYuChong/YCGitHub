@@ -26,6 +26,7 @@ class RepositoriesTrendingViewController: UITableViewController, IndicatorInfoPr
     }
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        printLog("----indicatorInfo------")
         return itemInfo
     }
     
