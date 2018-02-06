@@ -12,17 +12,14 @@ import XLPagerTabStrip
 class TrendingViewController: TwitterPagerTabStripViewController {
 
     override func viewDidLoad() {
-        settings.style.titleColor = .black
-        settings.style.selectedDotColor = .blue;
+        settings.style.titleColor = navBarTitleColor
+        settings.style.selectedDotColor = themeColor;
         settings.style.dotColor = .lightGray;
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         printLog("-------pagerTabStripController--------")
         let repositories = RepositoriesTrendingViewController()
@@ -46,11 +43,12 @@ extension TrendingViewController {
         
         switch self.currentIndex {
         case 0:
-            selectedLanguage = UserDefaults.LanguageScreeningRepositories.string(forkey: .language)
-            selectedTime = UserDefaults.LanguageScreeningRepositories.string(forkey: .since)
+            
+            selectedLanguage = LanguageScreeningDataTool.getLanguage(.repositories)
+            selectedTime = LanguageScreeningDataTool.getTime(.repositories)
         case 1:
-            selectedLanguage = UserDefaults.LanguageScreeningDeveloper.string(forkey: .language)
-            selectedTime = UserDefaults.LanguageScreeningDeveloper.string(forkey: .since)
+            selectedLanguage = LanguageScreeningDataTool.getLanguage(.developer)
+            selectedTime = LanguageScreeningDataTool.getTime(.developer)
         default:
             selectedLanguage = ""
             selectedTime = ""
@@ -73,13 +71,13 @@ extension TrendingViewController: LanguageScreeningProtocol {
         let currentVC = viewControllers[currentIndex]
         
         if let repositoriesVC = currentVC as? RepositoriesTrendingViewController{
-             UserDefaults.LanguageScreeningRepositories.set(value: selectedTime, forKey: .since)
-            UserDefaults.LanguageScreeningRepositories.set(value: selectedLanguage, forKey: .language)
+            LanguageScreeningDataTool.saveTime(selectedTime, screeningType: .repositories)
+            LanguageScreeningDataTool.saveLanguage(selectedLanguage, screeningType: .repositories)
 
             repositoriesVC.refreshData()
         } else if let develpoerVC = currentVC as? DevelpoerTrendingViewController {
-            UserDefaults.LanguageScreeningDeveloper.set(value: selectedTime, forKey: .since)
-            UserDefaults.LanguageScreeningDeveloper.set(value: selectedLanguage, forKey: .language)
+            LanguageScreeningDataTool.saveTime(selectedTime, screeningType: .developer)
+            LanguageScreeningDataTool.saveLanguage(selectedLanguage, screeningType: .developer)
             develpoerVC.refreshData()
 
         }

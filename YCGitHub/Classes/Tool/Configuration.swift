@@ -23,3 +23,9 @@ let navBarbackgroundColor: UIColor = tabBarbackgroundColor
 let navBarTitleColor: UIColor = UIColor("#323A45")
 let navTitleFontSize: CGFloat = 18.0
 let backButtonFontSize: CGFloat = 16.0
+
+
+
+let clientID: String = "41099d72ad575c0788fd"
+let clientSecret: String = "2c099e24f9589f931f2376646ccf80fe46a4f1ba"
+let urlScheme: String = "ycgithub"

@@ -16,14 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        if UserDefaults.LanguageScreeningRepositories.string(forkey: .since).count == 0 {
-            UserDefaults.LanguageScreeningRepositories.set(value: since.daily.rawValue, forKey: .since)
-            
-        }
-        if UserDefaults.LanguageScreeningDeveloper.string(forkey: .since).count == 0 {
-            UserDefaults.LanguageScreeningDeveloper.set(value: since.daily.rawValue, forKey: .since)
-        }
-//        
+        LanguageScreeningDataTool.initializationData()
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = MainTabBarViewController()

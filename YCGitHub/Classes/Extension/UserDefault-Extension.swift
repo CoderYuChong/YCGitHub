@@ -47,14 +47,14 @@ extension UserDefaults {
     struct LanguageScreeningDeveloper: UserDefaultSettable {
         enum UserDefaultKey: String {
             case language
-            case since
+            case time
         }
     }
     
     struct LanguageScreeningRepositories: UserDefaultSettable {
         enum UserDefaultKey: String {
             case language
-            case since
+            case time
         }
     }
 }

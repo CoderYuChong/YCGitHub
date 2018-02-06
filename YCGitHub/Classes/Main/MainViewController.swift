@@ -24,13 +24,13 @@ class MainViewController: UINavigationController {
         let navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.setBackgroundImage(UIImage(color: navBarbackgroundColor), for: .default)
         navigationBarAppearance.tintColor = themeColor
+        navigationBarAppearance.isTranslucent = false
         let textAttributes = [
             NSAttributedStringKey.font: UIFont.systemFont(ofSize: navTitleFontSize),
             NSAttributedStringKey.foregroundColor: navBarTitleColor
             ]
         
         navigationBarAppearance.titleTextAttributes = textAttributes
-
     }
     
 

@@ -13,16 +13,18 @@ class LanguageScreeningTableViewCell: UITableViewCell {
     @IBOutlet weak var languageColorView: UIView!
     @IBOutlet weak var checkImageView: UIImageView!
 
-//    var languageModel: LanguageModel {
-    //        didSet {
-//            languageLable.text = oldValue.languageName
-//            languageColorView.backgroundColor = UIColor(oldValue.languageColor!)
-//        }
-//        
-//    }
+    var languageModel: LanguageModel? {
+        didSet {
+            languageLable.text = languageModel?.languageName
+            languageColorView.backgroundColor = UIColor((languageModel?.languageColor)!)
+            checkImageView.isHidden = !((languageModel?.check) ?? false)
+        }
+        
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        languageColorView.layer.cornerRadius = 10.0;
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

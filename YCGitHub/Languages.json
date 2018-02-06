@@ -11,6 +11,10 @@
   {
     "languageList" : [
       {
+      "languageColor" : "#cccccc",
+      "languageName" : "所有语言"
+      },
+      {
         "languageColor" : "#E8274B",
         "languageName" : "ABAP"
       },

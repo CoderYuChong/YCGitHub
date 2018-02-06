@@ -10,7 +10,7 @@
 
 import Foundation
 import Alamofire
-
+import HandyJSON
 extension NetworkAgent {
     @discardableResult
     func request<T: BaseRequest> (_ form: T, hander: @escaping (T.Response?) -> Void) -> DataRequest {
@@ -18,8 +18,8 @@ extension NetworkAgent {
         printLog(url)
         let dataRequest = Alamofire.request(url, method: form.method, parameters: form.parameters(), encoding: form.encoding(), headers: form.headers())
         
+      
         dataRequest.responseString{ (response) in
-            
             printLog("Request: \(String(describing: response.request))")
             printLog("Response: \(String(describing: response.value))")
             printLog("Error: \(String(describing: response.error))")

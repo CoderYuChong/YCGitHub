@@ -29,14 +29,20 @@
         <!--View Controller-->
         <scene sceneID="1Fr-b0-IZB">
             <objects>
-                <viewController id="hZD-xd-wqz" sceneMemberID="viewController">
+                <viewController id="hZD-xd-wqz" customClass="ViewController" customModule="YCGitHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9wX-Wj-5dh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1803921568627451" green="0.74509803921568629" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="spK-f0-YNa"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jeW-nj-uXP"/>
+                    <navigationItem key="navigationItem" id="jeW-nj-uXP">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="7F6-nz-Z07">
+                            <connections>
+                                <action selector="jump:" destination="hZD-xd-wqz" id="29f-ig-dEa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1H-b1-9c5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

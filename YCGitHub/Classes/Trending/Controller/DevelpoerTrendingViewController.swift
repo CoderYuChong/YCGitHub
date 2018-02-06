@@ -12,13 +12,16 @@ import XLPagerTabStrip
 class DevelpoerTrendingViewController: UITableViewController, IndicatorInfoProvider {
     
     var itemInfo: IndicatorInfo = "Develpoers"
+    lazy var develpoerList: [TrendingDevelpoerModel] = [TrendingDevelpoerModel]()
+
     
-    var languageName: String = UserDefaults.LanguageScreeningDeveloper.string(forkey: .language)
-    var languageSince: String = UserDefaults.LanguageScreeningDeveloper.string(forkey: .since)
+    var languageName: String = LanguageScreeningDataTool.getLanguage(.developer)
+    var languageSince: String = LanguageScreeningDataTool.getTime(.developer)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .purple;
+        tableView.rowHeight = 72
+        tableView.register(R.nib.develpoerTableViewCell)
         setupRefresh()
         
         // Do any additional setup after loading the view.
@@ -35,26 +38,31 @@ class DevelpoerTrendingViewController: UITableViewController, IndicatorInfoProvi
 extension DevelpoerTrendingViewController {
     
     fileprivate func setupRefresh() {
-        tableView.headerRefresh(target: self, refreshingAction: #selector(loadData), beginRefreshing: false)
-        tableView.footerRefresh(target: self, refreshingAction: #selector(loadData), automaticallyRefresh: true, triggerAutomaticallyRefreshPercent: 30)
+        tableView.headerRefresh(target: self, refreshingAction: #selector(loadData), beginRefreshing: true)
+//        tableView.footerRefresh(target: self, refreshingAction: #selector(loadData), automaticallyRefresh: true, triggerAutomaticallyRefreshPercent: 30)
         
     }
 }
 
 // MARK: target-action
-extension DevelpoerTrendingViewController {
+extension DevelpoerTrendingViewController: NetworkAgent {
     @objc func loadData() {
-        printLog("--------")
-        tableView.mj_header.beginRefreshing()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            self.tableView.mj_header.endRefreshing()
-            self.tableView.mj_footer.endRefreshing()
+        let trendingRequest = TrendingDevelpoerRequest()
+        request(trendingRequest) { (response) in
+            self.tableView.endHeaderRefreshing()
+            if let response = response {
+                let trending = response as TrendingDevelpoerList
+                guard let items = trending.items else {
+                    return
+                }
+                self.develpoerList = items
+                self.tableView.reloadData()
+            }
         }
-        
     }
     
     func refreshData() {
-        
+        tableView.beginRefreshing()
     }
 }
 
@@ -63,13 +71,24 @@ extension DevelpoerTrendingViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30;
+        return develpoerList.count;
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let ID = "dtr"
-        let cell = UITableViewCell(style: .default, reuseIdentifier: ID)
-        cell.textLabel?.text = "这是第" + String(indexPath.row) + "行"
+      
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.develpoerTableViewCell, for: indexPath)!
+        cell.develpoerModel = develpoerList[indexPath.row]
         return cell;
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let trendingView = R.nib.trendingHeaderView.firstView(owner: self)
+        trendingView?.trendingString = languageName + " | " + languageSince
+        return trendingView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44.0
     }
 }

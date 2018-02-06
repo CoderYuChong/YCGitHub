@@ -14,15 +14,15 @@ import MJRefresh
 class RepositoriesTrendingViewController: UITableViewController, IndicatorInfoProvider {
     
     var itemInfo: IndicatorInfo = "Repositories"
-    var languageName: String = UserDefaults.LanguageScreeningRepositories.string(forkey: .language)
-    var languageSince: String = UserDefaults.LanguageScreeningRepositories.string(forkey: .since)
-    
+    lazy var repositoriesList: [TrendingRepositoriesModel] = [TrendingRepositoriesModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .orange
-//        view.translatesAutoresizingMaskIntoConstraints = false
-        setupRefresh()
+        tableView.rowHeight = UITableViewAutomaticDimension;
+        tableView.estimatedRowHeight = 100;
+        tableView.register(R.nib.repositoriesTableViewCell)
+//        setupRefresh()
+        test()
     }
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
@@ -37,7 +37,7 @@ class RepositoriesTrendingViewController: UITableViewController, IndicatorInfoPr
 extension RepositoriesTrendingViewController {
     fileprivate func setupRefresh() {
         tableView.headerRefresh(target: self, refreshingAction: #selector(loadData), beginRefreshing: true)
-        tableView.footerRefresh(target: self, refreshingAction: #selector(loadData), automaticallyRefresh: true, triggerAutomaticallyRefreshPercent: 30)
+//        tableView.footerRefresh(target: self, refreshingAction: #selector(loadData), automaticallyRefresh: true, triggerAutomaticallyRefreshPercent: 30)
         
     }
 }
@@ -45,21 +45,28 @@ extension RepositoriesTrendingViewController {
 // MARK: Network
 extension RepositoriesTrendingViewController: NetworkAgent {
     @objc func loadData() {
-        let trendingRequest =  TrendingRequest(lang: languageName, timeType: since(rawValue: languageSince)!)
+        let trendingRequest = TrendingRepositoriesRequest()
         request(trendingRequest) { (response) in
+            self.tableView.endHeaderRefreshing()
             if let response = response {
-                let trending = response as TrendingList
+                let trending = response as TrendingRepositoriesList
                 guard let items = trending.items else {
                     return
                 }
-              
-                
+                self.repositoriesList = items
+                self.tableView.reloadData()
             }
         }
     }
     
     func refreshData() {
         tableView.mj_header.beginRefreshing()
+    }
+    
+    func test() {
+        request(LoginRequest()) { (response) in
+            
+        }
     }
 }
 
@@ -69,13 +76,24 @@ extension RepositoriesTrendingViewController {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30;
+        return self.repositoriesList.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let ID = "dtr"
-        let cell = UITableViewCell(style: .default, reuseIdentifier: ID)
-        cell.textLabel?.text = "这是第" + String(indexPath.row) + "行"
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.repositoriesTableViewCell, for: indexPath)!
+        cell.repositoriesModel = repositoriesList[indexPath.row]
         return cell;
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let languageName: String = LanguageScreeningDataTool.getLanguage(.repositories)
+        let languageSince: String = LanguageScreeningDataTool.getTime(.repositories)
+        let trendingView = R.nib.trendingHeaderView.firstView(owner: self)
+        trendingView?.trendingString = languageName + " | " + languageSince
+        return trendingView
+    }
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44.0
     }
 }
 

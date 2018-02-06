@@ -9,6 +9,26 @@
 import Foundation
 
 extension String {
+    
+    func urlOfKey(key: String) -> String {
+        
+        if self.isEmpty {
+            return ""
+        }
+        let regexString = "(^|&|\\?)+\(key)=+([^&]*)(&|$)"
+        guard let regex = try? NSRegularExpression(pattern: regexString, options: .caseInsensitive) else {
+            return ""
+        }
+        let matches = regex.matches(in: self, options: [], range: NSMakeRange(0, self.count))
+        
+        for match in matches {
+            let range = match.range(at: 2)
+            let tagValue = self.subString(start: range.location, length: range.length)
+                return tagValue;
+        }
+        return ""
+    }
+    
     public func substring(from index: Int) -> String {
         if self.count > index {
             let startIndex = self.index(self.startIndex, offsetBy: index)

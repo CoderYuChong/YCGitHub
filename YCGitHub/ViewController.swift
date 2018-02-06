@@ -12,19 +12,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        view.backgroundColor = UIColor("FE54000")
-        
-        NotificationCenter.default.post(name: Notification.Name.UserNotification.DidCancel, object: nil)
-        
-//        UserDefaults.Account.set(value: "jake", forKey: .name)
-//       let _ = UserDefaults.Account.string(forkey: .name)
-//        URLSessionClient.shared.send(<#T##r: Request##Request#>, hander: <#T##(Decodable?) -> Void#>)
-     
-//        send(<#T##r: BaseRequest##BaseRequest#>, hander: <#T##(Decodable?) -> Void#>)
-        
+        // Do any additional setup after loading the view, typically fr
     }
 
+    @IBAction func jump(_ sender: Any) {
+        self.present(WebViewController(), animated: true, completion: nil)
+    }
 
 }
 

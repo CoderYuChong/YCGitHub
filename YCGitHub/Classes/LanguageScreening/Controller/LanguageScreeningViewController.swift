@@ -40,23 +40,24 @@ class LanguageScreeningViewController: UITableViewController {
             return [LanguageList]()
         }
         
-        let languageModel = LanguageModel(languageColor: "#cccccc", languageName: "所有语言", check: false)
-        let language = LanguageList(languageHead: "当前语言", languageList: [languageModel])
-        modelArr.insert(language, at: 0)
        return modelArr
     }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = .groupTableViewBackground
-        tableView.sectionIndexColor = .black
-        tableView.register(R.nib.languageScreeningTableViewCell)
-
+        setupTableView()
         handleData()
     }
     
-    fileprivate func handleData() {
+    private func setupTableView() {
+        tableView.backgroundColor = .groupTableViewBackground
+        tableView.sectionIndexColor = .black
+        tableView.rowHeight = 44.0
+        tableView.register(R.nib.languageScreeningTableViewCell)
+    }
+    
+    private func handleData() {
         switch since(rawValue: selectedTime!)!{
         case .daily:
             self.sinceSegmentedControl.selectedSegmentIndex = 0
@@ -66,13 +67,20 @@ class LanguageScreeningViewController: UITableViewController {
             self.sinceSegmentedControl.selectedSegmentIndex = 2
         }
         
+        var selectedModel: LanguageModel?
         for (firstindex, language) in languageArr.enumerated() {
             for (index, languageModel) in (language.languageList)!.enumerated() {
                 if languageModel.languageName == selectedLanguage {
                     languageArr[firstindex].languageList![index].check = true
+                    selectedModel = languageModel
                 }
             }
         }
+        
+        
+        let languageModel = LanguageModel(languageColor: selectedModel?.languageColor ?? "#cccccc", languageName: selectedModel?.languageName ?? "所有语言", check: true)
+        let language = LanguageList(languageHead: "当前语言", languageList: [languageModel])
+        languageArr .insert(language, at: 0)
         tableView.reloadData()
     }
 }
@@ -95,9 +103,10 @@ extension LanguageScreeningViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.languageScreeningTableViewCell, for: indexPath)!
         let languange = languageArr[indexPath.section]
         let languangeModel = languange.languageList?[indexPath.row]
-        cell.languageLable.text = languangeModel?.languageName
-        cell.languageColorView.backgroundColor = UIColor((languangeModel?.languageColor)!)
-        cell.checkImageView.isHidden = !((languangeModel?.check)!)
+//        cell.languageLable.text = languangeModel?.languageName
+//        cell.languageColorView.backgroundColor = UIColor((languangeModel?.languageColor)!)
+//        cell.checkImageView.isHidden = !((languangeModel?.check)!)
+        cell.languageModel = languangeModel
         return cell
     }
     
@@ -107,7 +116,7 @@ extension LanguageScreeningViewController {
     }
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         
-        return ["1","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+        return ["#","1","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
