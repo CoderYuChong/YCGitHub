@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func jump(_ sender: Any) {
-        self.present(WebViewController(), animated: true, completion: nil)
+        self.present(LoginOAuthController(), animated: true, completion: nil)
     }
 
 }

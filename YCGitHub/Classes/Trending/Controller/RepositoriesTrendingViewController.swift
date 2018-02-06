@@ -21,8 +21,7 @@ class RepositoriesTrendingViewController: UITableViewController, IndicatorInfoPr
         tableView.rowHeight = UITableViewAutomaticDimension;
         tableView.estimatedRowHeight = 100;
         tableView.register(R.nib.repositoriesTableViewCell)
-//        setupRefresh()
-        test()
+        setupRefresh()
     }
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
@@ -63,11 +62,7 @@ extension RepositoriesTrendingViewController: NetworkAgent {
         tableView.mj_header.beginRefreshing()
     }
     
-    func test() {
-        request(LoginRequest()) { (response) in
-            
-        }
-    }
+  
 }
 
 // MARK: delegate-datasource

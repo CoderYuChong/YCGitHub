@@ -1,18 +1,21 @@
 //
-//  LoginViewController.swift
+//  ProfileViewController.swift
 //  YCGitHub
 //
-//  Created by YoukaStation on 2018/2/6.
+//  Created by 余冲 on 2018/2/6.
 //  Copyright © 2018年 YoukaStation. All rights reserved.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
+    @IBAction func login(_ sender: Any) {
+        self.present(LoginOAuthController(), animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .groupTableViewBackground
         // Do any additional setup after loading the view.
     }
 
@@ -31,9 +34,5 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-//https://api.github.com/authorizations/clients/ef5834ea86b53233dc4
-}
 
-extension LoginViewController: NetworkAgent {
-    
 }

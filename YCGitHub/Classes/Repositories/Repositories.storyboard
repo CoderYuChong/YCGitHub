@@ -37,11 +37,7 @@
                         <viewLayoutGuide key="safeArea" id="spK-f0-YNa"/>
                     </view>
                     <navigationItem key="navigationItem" id="jeW-nj-uXP">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="7F6-nz-Z07">
-                            <connections>
-                                <action selector="jump:" destination="hZD-xd-wqz" id="29f-ig-dEa"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="7F6-nz-Z07"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1H-b1-9c5" userLabel="First Responder" sceneMemberID="firstResponder"/>

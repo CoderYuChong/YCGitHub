@@ -24,12 +24,15 @@ class MainTabBarViewController: ESTabBarController {
 extension MainTabBarViewController {
    fileprivate func setupViewControllers() {
         
-        let repositories = R.storyboard.repositories().instantiateInitialViewController();
+        let repositoriesVC = R.storyboard.repositories().instantiateInitialViewController();
         let trendingVC = R.storyboard.trending().instantiateInitialViewController();
+        let profileVC = R.storyboard.profile().instantiateInitialViewController();
+    
         trendingVC?.tabBarItem = ESTabBarItem.init(ExampleBouncesContentView(), title: "Trending", image: R.image.tabbar_trending_normal(), selectedImage: R.image.tabbar_trending_selected())
-        repositories?.tabBarItem = ESTabBarItem.init(ExampleBouncesContentView(), title: "Profile", image: R.image.tabbar_profile_normal(), selectedImage: R.image.tabbar_profile_selected())
+        repositoriesVC?.tabBarItem = ESTabBarItem.init(ExampleBouncesContentView(), title: "Repositories", image: R.image.tabbar_trending_normal(), selectedImage: R.image.tabbar_trending_selected())
+        profileVC?.tabBarItem = ESTabBarItem.init(ExampleBouncesContentView(), title: "Profile", image: R.image.tabbar_profile_normal(), selectedImage: R.image.tabbar_profile_selected())
         
-        self.viewControllers = [trendingVC!, repositories!];
+        self.viewControllers = [trendingVC!, repositoriesVC!,profileVC!];
     }
 }
 

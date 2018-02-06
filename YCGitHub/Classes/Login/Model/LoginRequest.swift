@@ -12,34 +12,19 @@ import Alamofire
 
 struct LoginRequest: BaseRequest {
     typealias Response = LoginModel
-    //https://api.github.com/authorizations/clients/ef5834ea86b53233dc4
-    var passWorld = "yuchong5520"
-    var account = "13088861503@163.com"
-    
+    var code: String
     var host: String {
-        return "https://api.github.com/"
-    }
-    var path: String {
-        return "authorizations/clients/" + clientID
-    }
-    func parameters() -> [String : String] {
-        return ["client_secret": clientSecret]
-    }
-    var method: HTTPMethod {
-        return .put
-    }
-    
-    func headers() -> [String : String] {
-        return ["Authorization": "Basic MTMwODg4NjE1MDNAMTYzLmNvbTp5dWNob25nNTUyMA==",
-                "Accept": "application/vnd.github.mirage-preview+json",
-                "Content-Type": "application/json; charset=utf-8"]
+        return "https://github.com/login/oauth/access_token?client_id=41099d72ad575c0788fd&client_secret=2c099e24f9589f931f2376646ccf80fe46a4f1ba&code=\(code)&redirect_uri=YCGithub://github.com/CoderYuChong"
     }
 
+    var method: HTTPMethod {
+        return .post
+    }
 
 }
 
 
 
 struct LoginModel: Decodable {
-
+    var access_token: String?
 }
