@@ -50,3 +50,33 @@ extension String {
     }
     
 }
+extension String {
+    /// Encode a String to Base64
+    func toBase64() -> String {
+        return Data(self.utf8).base64EncodedString()
+    }
+    
+    /// Decode a String from Base64. Returns nil if unsuccessful.
+    func fromBase64() -> String? {
+        guard let data = Data(base64Encoded: self) else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+}
+extension String {
+    var data: Data {
+        return Data(utf8)
+    }
+    var base64Decoded: Data? {
+        return Data(base64Encoded: self)
+    }
+    var base64EncodedString: String? {
+        return data.base64EncodedData().string
+    }
+    var base64DecodedString: String? {
+        return Data(base64Encoded: self)?.string
+    }
+}
+
+extension Data {
+    var string: String? { return String(data: self, encoding: .utf8) }
+}

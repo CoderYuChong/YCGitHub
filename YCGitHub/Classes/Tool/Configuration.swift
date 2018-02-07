@@ -29,3 +29,6 @@ let backButtonFontSize: CGFloat = 16.0
 let clientID: String = "41099d72ad575c0788fd"
 let clientSecret: String = "2c099e24f9589f931f2376646ccf80fe46a4f1ba"
 let urlScheme: String = "ycgithub"
+
+let yc_serviceName: String = "com.yuchong.ycgithub"
+let yc_accessToken: String = "AccessToken"

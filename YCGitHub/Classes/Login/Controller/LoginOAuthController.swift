@@ -52,6 +52,7 @@ extension LoginOAuthController: UIWebViewDelegate {
             guard let code = request.url?.absoluteString.urlOfKey(key: "code") else {
                 return false
             }
+            
             loadAccessToken(code)
             return false
         }
@@ -62,11 +63,21 @@ extension LoginOAuthController: UIWebViewDelegate {
 
 extension LoginOAuthController: NetworkAgent {
     func loadAccessToken(_ code: String) {
-        
         request(LoginRequest(code: code)) { (response) in
-            let access_token = response?.access_token
-            
-            printLog(access_token ?? "access_token = nil")
+            if let access_token = response?.access_token  {
+                printLog(access_token)
+                KeychainTool.setAccessToken(username: access_token, password: "x-oauth-basic")
+                self.loadProfileData()
+            }
         }
     }
+    
+    func loadProfileData() {
+        request(ProfileRequest()) { (response) in
+            if let response = response {
+                printLog(response.login ?? "ProfileRequest")
+            }
+        }
+    }
+    
 }

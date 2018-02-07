@@ -11,11 +11,15 @@ import Foundation
 extension NetworkConfig {
     
     var host: String {
-        return "https://trendings.herokuapp.com/"
+        return "https://api.github.com/"
     }
     
     func headers() -> [String : String] {
-        return [:]
+        let token = KeychainTool.accessToken()
+        if token.count == 0  {
+            return [:]
+        }
+        return ["Authorization": token]
     }
     
 }

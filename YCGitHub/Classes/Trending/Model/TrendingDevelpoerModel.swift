@@ -16,6 +16,10 @@ struct TrendingDevelpoerRequest: BaseRequest {
     var timeType: since = since(rawValue: LanguageScreeningDataTool.getTime(.developer)) ?? .daily
     
     typealias Response = TrendingDevelpoerList
+    var host: String {
+        return "https://trendings.herokuapp.com/"
+    }
+    
     var path: String {
         return "developer"
     }

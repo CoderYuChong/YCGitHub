@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Y4B-mW-Gij" kind="relationship" relationship="rootViewController" id="Sxk-WH-Xcy"/>
+                        <segue destination="X3c-pA-LzA" kind="relationship" relationship="rootViewController" id="hHc-86-mgv"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7Z-Ur-1CV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -27,30 +26,23 @@
             <point key="canvasLocation" x="-361" y="89"/>
         </scene>
         <!--Profile-->
-        <scene sceneID="aND-5a-2Et">
+        <scene sceneID="rMw-Xm-7kc">
             <objects>
-                <viewController id="Y4B-mW-Gij" customClass="ProfileViewController" customModule="YCGitHub" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zis-uT-ubo">
+                <tableViewController id="X3c-pA-LzA" customClass="ProfileViewController" customModule="YCGitHub" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ywL-CQ-f04">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWN-Jg-MxC">
-                                <rect key="frame" x="40" y="101" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="login:" destination="Y4B-mW-Gij" eventType="touchUpInside" id="Pr1-4S-N9D"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="gnF-Y6-fsp"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Profile" id="zcA-au-z5v"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="269-ZF-rEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="X3c-pA-LzA" id="ntJ-Yt-afI"/>
+                            <outlet property="delegate" destination="X3c-pA-LzA" id="97E-eM-DuM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Profile" id="eVk-T6-8jG"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jls-sJ-8N4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="415" y="89"/>
+            <point key="canvasLocation" x="402" y="89"/>
         </scene>
     </scenes>
 </document>

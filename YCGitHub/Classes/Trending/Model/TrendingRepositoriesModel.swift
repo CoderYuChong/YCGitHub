@@ -24,6 +24,9 @@ struct TrendingRepositoriesRequest: BaseRequest {
     var timeType: since = since(rawValue: LanguageScreeningDataTool.getTime(.repositories)) ?? .daily
 
     typealias Response = TrendingRepositoriesList
+    var host: String {
+        return "https://trendings.herokuapp.com/"
+    }
     var path: String {
         return "repo?"
     }
