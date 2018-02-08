@@ -10,13 +10,13 @@ import Foundation
 import HandyJSON
 
 
-struct LanguageList: HandyJSON {
-    var languageHead: String?
-    var languageList: [LanguageModel]?
+struct LanguageList: Codable {
+    let languageHead: String?
+    var languageList: [LanguageModel]
 }
 
-struct LanguageModel: HandyJSON {
-    var languageColor: String?
-    var languageName: String?
-    var check: Bool = false
+struct LanguageModel: Codable {
+    let languageColor: String
+    let languageName: String
+    var check: Bool? = false
 }

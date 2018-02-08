@@ -19,7 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LanguageScreeningDataTool.initializationData()
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = MainTabBarViewController()
+        
+       let login = KeychainTool.accessToken().isEmpty
+//        if login {
+//            window?.rootViewController = MainTabBarViewController()
+//        } else{
+            window?.rootViewController = R.storyboard.login.instantiateInitialViewController()
+//        }
+        
         window?.makeKeyAndVisible()
         return true
     }

@@ -8,7 +8,6 @@
 //
 
 import Foundation
-import HandyJSON
 
 
 enum since: String {
@@ -47,16 +46,11 @@ struct TrendingRepositoriesRequest: BaseRequest {
     
     
 }
-struct TrendingRepositoriesList: Decodable {
-   
-//    static func keyPath() -> String? {
-//        return "";
-//    }
-    
-    var items: [TrendingRepositoriesModel]?
+struct TrendingRepositoriesList: DecodableJSON {
+    var items: [TrendingRepositoriesModel]
 }
 
-struct TrendingRepositoriesModel: HandyJSON {
+struct TrendingRepositoriesModel: Codable {
     var repo_link: String?
     var desc: String?
     var repo: String?

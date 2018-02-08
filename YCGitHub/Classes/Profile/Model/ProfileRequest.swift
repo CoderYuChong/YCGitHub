@@ -11,104 +11,121 @@ import HandyJSON
 
 struct ProfileRequest: BaseRequest {
     typealias Response = ProfileModel
+    var userName: String?
     var path: String {
-        return "user"
+        return "user" + ((userName != nil) ? "/\(String(describing: userName))" :  "")
     }
     
 }
-
-struct ProfileModel: Decodable{
-    var avatarUrl: String?
-    var bio: String?
-    var blog: String?
-    var collaborators: Int?
-    var company: String?
-    var createdAt: String?
-    var diskUsage: Int?
-    var email: String?
-    var eventsUrl: String?
-    var followers: Int?
-    var followersUrl: String?
-    var following: Int?
-    var followingUrl: String?
-    var gistsUrl: String?
-    var gravatarId: String?
-    var hireable: Bool?
-    var htmlUrl: String?
-    var id: Int?
-    var location: String?
-    var login: String?
-    var name: String?
-    var organizationsUrl: String?
-    var ownedPrivateRepos: Int?
-    var plan: Plan?
-    var privateGists: Int?
-    var publicGists: Int?
-    var publicRepos: Int?
-    var receivedEventsUrl: String?
-    var reposUrl: String?
-    var siteAdmin: Bool?
-    var starredUrl: String?
-    var subscriptionsUrl: String?
-    var totalPrivateRepos: Int?
-    var twoFactorAuthentication: Bool?
-    var type: String?
-    var updatedAt: String?
-    var url: String?
-    mutating func mapping(mapper: HelpingMapper) {
-     
-        mapper <<<
-            self.avatarUrl <-- "avatar_url"
-        mapper <<<
-            self.updatedAt <-- "updated_at"
-        mapper <<<
-            self.createdAt <-- "created_at"
-        mapper <<<
-            self.diskUsage <-- "disk_usage"
-        mapper <<<
-            self.eventsUrl <-- "events_url"
-        mapper <<<
-            self.followersUrl <-- "followers_url"
-        mapper <<<
-            self.followingUrl <-- "following_url"
-        mapper <<<
-            self.gistsUrl <-- "gists_url"
-        mapper <<<
-            self.htmlUrl <-- "html_url"
-        mapper <<<
-            self.organizationsUrl <-- "organizations_url"
-        mapper <<<
-            self.ownedPrivateRepos <-- "owned_private_repos"
-        mapper <<<
-            self.privateGists <-- "private_gists"
-        mapper <<<
-            self.publicGists <-- "public_gists"
-        mapper <<<
-            self.publicRepos <-- "public_repos"
-        mapper <<<
-            self.receivedEventsUrl <-- "received_events_url"
-        mapper <<<
-            self.reposUrl <-- "repos_url"
-        mapper <<<
-            self.siteAdmin <-- "site_admin"
-        mapper <<<
-            self.starredUrl <-- "starred_url"
-        mapper <<<
-            self.subscriptionsUrl <-- "subscriptions_url"
-        mapper <<<
-            self.totalPrivateRepos <-- "total_private_repos"
-        mapper <<<
-            self.twoFactorAuthentication <-- "two_factor_authentication"
-        
+struct ProfileModel: DecodableJSON {
+    let login: String
+    let id: Int
+    let avatarURL: String
+    let gravatarID: String
+    let url: String
+    let htmlURL: String
+    let followersURL: String
+    let followingURL: String
+    let gistsURL: String
+    let starredURL: String
+    let subscriptionsURL: String
+    let organizationsURL: String
+    let reposURL: String
+    let eventsURL: String
+    let receivedEventsURL: String
+    let type: String
+    let siteAdmin: Bool
+    let name: String
+    let company: String?
+    let blog: String
+    let location: String?
+    let email: String?
+    let hireable: String?
+    let bio: String?
+    let publicRepos: Int
+    let publicGists: Int
+    let followers: Int
+    let following: Int
+    let createdAt: String
+    let updatedAt: String
+//    let privateGists: Int
+//    let totalPrivateRepos: Int
+//    let ownedPrivateRepos: Int
+//    let diskUsage: Int
+//    let collaborators: Int
+//    let twoFactorAuthentication: Bool
+//    let plan: Plan
+//
+    enum CodingKeys: String, CodingKey {
+        case login = "login"
+        case id = "id"
+        case avatarURL = "avatar_url"
+        case gravatarID = "gravatar_id"
+        case url = "url"
+        case htmlURL = "html_url"
+        case followersURL = "followers_url"
+        case followingURL = "following_url"
+        case gistsURL = "gists_url"
+        case starredURL = "starred_url"
+        case subscriptionsURL = "subscriptions_url"
+        case organizationsURL = "organizations_url"
+        case reposURL = "repos_url"
+        case eventsURL = "events_url"
+        case receivedEventsURL = "received_events_url"
+        case type = "type"
+        case siteAdmin = "site_admin"
+        case name = "name"
+        case company = "company"
+        case blog = "blog"
+        case location = "location"
+        case email = "email"
+        case hireable = "hireable"
+        case bio = "bio"
+        case publicRepos = "public_repos"
+        case publicGists = "public_gists"
+        case followers = "followers"
+        case following = "following"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+//        case privateGists = "private_gists"
+//        case totalPrivateRepos = "total_private_repos"
+//        case ownedPrivateRepos = "owned_private_repos"
+//        case diskUsage = "disk_usage"
+//        case collaborators = "collaborators"
+//        case twoFactorAuthentication = "two_factor_authentication"
+//        case plan = "plan"
     }
-    
 }
 
+//struct Plan: Codable {
+//    let name: String
+//    let space: Int
+//    let collaborators: Int
+//    let privateRepos: Int
+//
+//    enum CodingKeys: String, CodingKey {
+//        case name = "name"
+//        case space = "space"
+//        case collaborators = "collaborators"
+//        case privateRepos = "private_repos"
+//    }
+//}
 
-struct Plan: HandyJSON{
-    var collaborators: Int?
-    var name: String?
-    var privateRepos: Int?
-    var space: Int?
+// MARK: Encode/decode helpers
+
+class JSONNull: Codable {
+    public init() {}
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if !container.decodeNil() {
+            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encodeNil()
+    }
 }
 

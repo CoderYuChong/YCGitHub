@@ -16,4 +16,6 @@ target 'YCGitHub' do
   pod 'XLPagerTabStrip'
   pod 'ESTabBarController-swift'
   pod 'KeychainAccess'
+  pod 'UIImage+BlurredFrame'
+  pod 'MBProgressHUD'
 end

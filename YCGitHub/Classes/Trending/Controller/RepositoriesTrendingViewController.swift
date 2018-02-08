@@ -49,10 +49,7 @@ extension RepositoriesTrendingViewController: NetworkAgent {
             self.tableView.endHeaderRefreshing()
             if let response = response {
                 let trending = response as TrendingRepositoriesList
-                guard let items = trending.items else {
-                    return
-                }
-                self.repositoriesList = items
+                self.repositoriesList = trending.items
                 self.tableView.reloadData()
             }
         }

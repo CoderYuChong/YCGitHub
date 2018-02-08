@@ -40,8 +40,24 @@ class LoginOAuthController: UIViewController {
         
         let request = URLRequest(url: url)
         webView.delegate = self
+        cleanCacheAndCookie()
         webView.loadRequest(request)
     }
+    private func cleanCacheAndCookie() {
+    // 清除cookie
+        let storage = HTTPCookieStorage.shared
+        guard let cookies = storage.cookies else {
+            return
+        }
+        for cookie in cookies {
+            storage.deleteCookie(cookie)
+        }
+        let cache =  URLCache.shared
+        cache.removeAllCachedResponses()
+        cache.diskCapacity = 0
+        cache.memoryCapacity = 0
+    }
+
     
 }
 
@@ -67,15 +83,7 @@ extension LoginOAuthController: NetworkAgent {
             if let access_token = response?.access_token  {
                 printLog(access_token)
                 KeychainTool.setAccessToken(username: access_token, password: "x-oauth-basic")
-                self.loadProfileData()
-            }
-        }
-    }
-    
-    func loadProfileData() {
-        request(ProfileRequest()) { (response) in
-            if let response = response {
-                printLog(response.login ?? "ProfileRequest")
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }

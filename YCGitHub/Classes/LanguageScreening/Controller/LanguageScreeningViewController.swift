@@ -10,7 +10,7 @@ import UIKit
 import HandyJSON
 
 enum LanguageScreeningType: Int {
-    case repositories
+    case repositorivar
     case developer
 }
 
@@ -35,12 +35,21 @@ class LanguageScreeningViewController: UITableViewController {
             return [LanguageList]()
         }
         let str = String(data:data, encoding: String.Encoding.utf8)
-        guard let modellist = [LanguageList].deserialize(from: str),
-            var modelArr = modellist as? [LanguageList] else {
+        
+        let jsonDecoder = JSONDecoder()
+        
+        
+        do {
+            let modellist = try jsonDecoder.decode([LanguageList].self, from: data)
+        } catch {
+            print(error)
+        }
+        
+        guard let modellist = try? jsonDecoder.decode([LanguageList].self, from: data) else {
             return [LanguageList]()
         }
         
-       return modelArr
+       return modellist
     }()
     
     
@@ -69,9 +78,9 @@ class LanguageScreeningViewController: UITableViewController {
         
         var selectedModel: LanguageModel?
         for (firstindex, language) in languageArr.enumerated() {
-            for (index, languageModel) in (language.languageList)!.enumerated() {
+            for (index, languageModel) in (language.languageList).enumerated() {
                 if languageModel.languageName == selectedLanguage {
-                    languageArr[firstindex].languageList![index].check = true
+                    languageArr[firstindex].languageList[index].check = true
                     selectedModel = languageModel
                 }
             }
@@ -95,17 +104,14 @@ extension LanguageScreeningViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         let languange = languageArr[section]
-        return (languange.languageList?.count)!
+        return (languange.languageList.count)
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.languageScreeningTableViewCell, for: indexPath)!
         let languange = languageArr[indexPath.section]
-        let languangeModel = languange.languageList?[indexPath.row]
-//        cell.languageLable.text = languangeModel?.languageName
-//        cell.languageColorView.backgroundColor = UIColor((languangeModel?.languageColor)!)
-//        cell.checkImageView.isHidden = !((languangeModel?.check)!)
+        let languangeModel = languange.languageList[indexPath.row]
         cell.languageModel = languangeModel
         return cell
     }
@@ -122,14 +128,14 @@ extension LanguageScreeningViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let languange = languageArr[indexPath.section]
-        let languangeModel = languange.languageList?[indexPath.row]
+        let languangeModel = languange.languageList[indexPath.row]
         let value = segmentedControlSegmentIndex(self.sinceSegmentedControl.selectedSegmentIndex)
 
-        if (languangeModel?.languageName != selectedLanguage)  || (value != selectedTime) {
+        if (languangeModel.languageName != selectedLanguage)  || (value != selectedTime) {
             isReload = true
         }
         
-        deleagte?.languageScreening(selectedLanguage: (languangeModel?.languageName)!, selectedTime: value, isReload: isReload)
+        deleagte?.languageScreening(selectedLanguage: (languangeModel.languageName), selectedTime: value, isReload: isReload)
         self.dismiss(animated: true, completion: nil)
     }
     

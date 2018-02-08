@@ -25,10 +25,10 @@ struct LoginRequest: BaseRequest {
 
 
 
-struct LoginModel: Decodable {
-    var access_token: String?
-    static func parse(data: String) -> LoginModel? {
-        let token = data.urlOfKey(key: "access_token")
+struct LoginModel: DecodableJSON {
+    let access_token: String?
+    static func parse(data: Data) -> LoginModel? {
+        let token = data.string?.urlOfKey(key: "access_token")
         return LoginModel(access_token: token)
     }
     

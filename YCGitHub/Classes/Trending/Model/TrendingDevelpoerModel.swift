@@ -40,12 +40,12 @@ struct TrendingDevelpoerRequest: BaseRequest {
     
     
 }
-struct TrendingDevelpoerList: Decodable {
-    
-    var items: [TrendingDevelpoerModel]?
+struct TrendingDevelpoerList: DecodableJSON {
+
+    var items: [TrendingDevelpoerModel]
 }
 
-struct TrendingDevelpoerModel: HandyJSON {
+struct TrendingDevelpoerModel: Codable {
     var developer_avatar: String?
     var full_name: String?
     var user: String?

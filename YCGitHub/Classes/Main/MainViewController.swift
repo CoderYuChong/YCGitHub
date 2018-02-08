@@ -29,7 +29,7 @@ class MainViewController: UINavigationController {
             NSAttributedStringKey.font: UIFont.systemFont(ofSize: navTitleFontSize),
             NSAttributedStringKey.foregroundColor: navBarTitleColor
             ]
-        
+        navigationBarAppearance.backIndicatorImage = R.image.icon_nav_back()
         navigationBarAppearance.titleTextAttributes = textAttributes
     }
     

@@ -31,7 +31,7 @@ extension BaseRequest {
 
 
 protocol BaseRequest: NetworkConfig {
-    associatedtype Response: Decodable
+    associatedtype Response: DecodableJSON
     var path: String { get }
     func encoding() -> ParameterEncoding
     func parameters() -> [String: String]

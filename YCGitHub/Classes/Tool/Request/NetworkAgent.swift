@@ -18,13 +18,17 @@ extension NetworkAgent {
         printLog(url)
         let dataRequest = Alamofire.request(url, method: form.method, parameters: form.parameters(), encoding: form.encoding(), headers: form.headers())
         
-      
-        dataRequest.responseString{ (response) in
+        dataRequest.response{ (response) in
             printLog("Request: \(String(describing: response.request))")
-            printLog("Response: \(String(describing: response.value))")
+            printLog("Response: \(String(describing: response.response))")
             printLog("Error: \(String(describing: response.error))")
+            if response.response?.statusCode == 401 {
+                
+//                UIApplication.topViewController()?.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+                return
+            }
             
-            if let data = response.value, let res = T.Response.parse(data: data) {
+            if let data = response.data, let res = T.Response.parse(data: data) {
                 DispatchQueue.main.async { hander(res) }
             } else {
                 DispatchQueue.main.async { hander(nil) }
@@ -33,6 +37,9 @@ extension NetworkAgent {
         
         return dataRequest
     }
+    
+    
+//    private F
     
 }
 

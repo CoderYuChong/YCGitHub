@@ -18,7 +18,7 @@ class ProfileHederTableViewCell: UITableViewCell {
     
     var profileModel: ProfileModel? {
         didSet {
-            userIcon.setImage(with: profileModel?.avatarUrl)
+            userIcon.setImage(with: profileModel?.avatarURL)
             userNameLable.text = profileModel?.name
             joinTimeLable.text = profileModel?.createdAt
 //            descLable.text = profileModel?.createdAt

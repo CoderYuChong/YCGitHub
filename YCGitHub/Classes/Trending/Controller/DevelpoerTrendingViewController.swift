@@ -52,10 +52,10 @@ extension DevelpoerTrendingViewController: NetworkAgent {
             self.tableView.endHeaderRefreshing()
             if let response = response {
                 let trending = response as TrendingDevelpoerList
-                guard let items = trending.items else {
-                    return
-                }
-                self.develpoerList = items
+//                guard let items = trending.items else {
+//                    return
+//                }
+                self.develpoerList = trending.items
                 self.tableView.reloadData()
             }
         }
