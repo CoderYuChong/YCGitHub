@@ -17,5 +17,6 @@ target 'YCGitHub' do
   pod 'ESTabBarController-swift'
   pod 'KeychainAccess'
   pod 'UIImage+BlurredFrame'
-  pod 'MBProgressHUD'
+  pod 'SVProgressHUD'
+  pod 'NJKWebViewProgress'
 end

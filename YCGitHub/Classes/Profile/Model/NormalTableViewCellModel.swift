@@ -11,5 +11,10 @@ import UIKit
 struct NormalTableViewCellModel {
     var iconName: String
     var titleString: String
-    var isArrow: Bool = true
+    var isArrow: Bool?
+    init(iconName: String, titleString: String, isArrow: Bool = true) {
+        self.iconName = iconName
+        self.titleString = titleString
+        self.isArrow = isArrow
+    }
 }

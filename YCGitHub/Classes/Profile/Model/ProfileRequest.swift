@@ -13,7 +13,10 @@ struct ProfileRequest: BaseRequest {
     typealias Response = ProfileModel
     var userName: String?
     var path: String {
-        return "user" + ((userName != nil) ? "/\(String(describing: userName))" :  "")
+        guard let user = userName else {
+            return "user"
+        }
+        return "users/" + user
     }
     
 }
@@ -40,7 +43,7 @@ struct ProfileModel: DecodableJSON {
     let blog: String
     let location: String?
     let email: String?
-    let hireable: String?
+    let hireable: Int?
     let bio: String?
     let publicRepos: Int
     let publicGists: Int

@@ -18,8 +18,14 @@ public protocol DecodableJSON: Codable {
 extension DecodableJSON {
     static func parse(data: Data) -> Self? {
         let jsonDecoder = JSONDecoder()
-        let user = try? jsonDecoder.decode(self, from: data)
-        return user
+//        let user = try? jsonDecoder.decode(self, from: data)
+        do {
+            let user = try jsonDecoder.decode(self, from: data)
+            return user
+        } catch {
+            print(error)
+            return nil
+        }
 //      return Self.deserialize(from: data, designatedPath: keyPath())
     }
     

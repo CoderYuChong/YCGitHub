@@ -36,6 +36,13 @@ class ProfileViewController: UITableViewController {
         return [setting, about, feedback]
     }
     private func setUpTableView() {
+        
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: normalCellID)
         tableView.register(R.nib.profileHederTableViewCell)
@@ -45,23 +52,34 @@ class ProfileViewController: UITableViewController {
     private func setupRefresh() {
         tableView.headerRefresh(target: self, refreshingAction: #selector(loadProfileData), beginRefreshing: true)
     }
+    
+    deinit {
+        printLog("-----ProfileViewController-----")
+    }
 
 }
-
 extension ProfileViewController {
-    
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10.0
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.001
+        return 0.1
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+        
+    }
 }
+
+
 extension ProfileViewController: NetworkAgent {
     @objc func loadProfileData() {
         request(ProfileRequest(userName: userName)) { (response) in
+            self.tableView.endHeaderRefreshing()
             if let response = response {
                 self.setupViewModel(response)
                 self.tableView.reloadData()
@@ -78,10 +96,11 @@ extension ProfileViewController: NetworkAgent {
         
         sectionArr.append([profileHeder,profileNumbers])
 
-        let company = NormalTableViewCellModel(iconName: "icon_profile_company", titleString: profileModel.company ?? "", isArrow: true)
-        let email = NormalTableViewCellModel(iconName: "icon_profile_email", titleString: profileModel.email ?? "Not Set", isArrow: true)
-        let place = NormalTableViewCellModel(iconName: "icon_profile_place", titleString: profileModel.location ?? "", isArrow: true)
-        let blog = NormalTableViewCellModel(iconName: "icon_profile_link", titleString: profileModel.blog.count == 0 ? profileModel.blog :"", isArrow: true)
+        let company = NormalTableViewCellModel(iconName: "icon_profile_company", titleString: profileModel.company ?? "", isArrow: false)
+        let email = NormalTableViewCellModel(iconName: "icon_profile_email", titleString: profileModel.email ?? "Not Set", isArrow: false)
+        let place = NormalTableViewCellModel(iconName: "icon_profile_place", titleString: profileModel.location ?? "", isArrow: false)
+        
+        let blog = NormalTableViewCellModel(iconName: "icon_profile_link", titleString: profileModel.blog.count == 0 ? profileModel.blog :"", isArrow: (profileModel.blog.count != 0))
         
         
         let companyCell = ProfileViewModel(cellModel: company as AnyObject, cellIdentifier: normalCellID, profileViewType: profileViewType)
@@ -97,8 +116,8 @@ extension ProfileViewController: NetworkAgent {
         }
         
         dataSource = ProfileTableViewControllerDataSource(dataSource: sectionArr as! Array<[ProfileViewModel]>, settings: setUpSettingsData(), owner: nil)
+        
         tableView.dataSource = dataSource
-
     }
     
 }

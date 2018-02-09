@@ -39,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUa-Ez-xdA">
-                                <rect key="frame" x="0.0" y="164" width="375" height="307"/>
+                                <rect key="frame" x="0.0" y="164" width="375" height="312"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="6px-ck-OVo">
                                         <rect key="frame" x="158" y="0.0" width="60" height="60"/>
@@ -58,7 +58,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="lZh-Pk-NfW"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码/电子邮件" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Czk-ea-d4e">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Czk-ea-d4e">
                                                 <rect key="frame" x="15" y="8" width="345" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -81,15 +81,21 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ph-wN-QUF">
-                                        <rect key="frame" x="30" y="218" width="315" height="40"/>
-                                        <color key="backgroundColor" red="0.1803921568627451" green="0.74509803921568629" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="30" y="218" width="315" height="45"/>
+                                        <color key="backgroundColor" red="0.18039215689999999" green="0.74509803919999995" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="RHy-Os-94f"/>
+                                            <constraint firstAttribute="height" constant="45" id="RHy-Os-94f"/>
                                         </constraints>
                                         <state key="normal" title="登录"/>
                                         <state key="disabled">
-                                            <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <color key="titleColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <real key="value" value="22.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="login:" destination="2up-8x-8AT" eventType="touchUpInside" id="uii-l8-pUL"/>
                                         </connections>
@@ -104,7 +110,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="56B-F2-Ijc"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码/电子邮件" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F62-n1-QQc">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="F62-n1-QQc">
                                                 <rect key="frame" x="15" y="8" width="345" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -127,7 +133,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBX-E9-3r4">
-                                        <rect key="frame" x="138.5" y="278" width="98" height="29"/>
+                                        <rect key="frame" x="138.5" y="283" width="98" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="OAuth授权登录">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

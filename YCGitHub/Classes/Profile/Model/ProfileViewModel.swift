@@ -19,6 +19,7 @@ class ProfileViewModel: NSObject {
         self.cellIdentifier = cellIdentifier
         self.cellModel = cellModel
         self.profileViewType = profileViewType
+//        self.cellHeight = cellHeight
     }
     
 }

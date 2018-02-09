@@ -15,18 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        setupAppearance()
         LanguageScreeningDataTool.initializationData()
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
-        
-       let login = KeychainTool.accessToken().isEmpty
-//        if login {
-//            window?.rootViewController = MainTabBarViewController()
-//        } else{
+        if KeychainTool.accessToken().count != 0 {
+            window?.rootViewController = MainTabBarViewController()
+        } else{
             window?.rootViewController = R.storyboard.login.instantiateInitialViewController()
-//        }
-        
+        }
         window?.makeKeyAndVisible()
         return true
     }
@@ -54,5 +51,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate {
+    
+    fileprivate func setupAppearance() {
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.setBackgroundImage(UIImage(color: navBarbackgroundColor), for: .default)
+        navigationBarAppearance.tintColor = themeColor
+        navigationBarAppearance.isTranslucent = false
+        let textAttributes = [
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: navTitleFontSize),
+            NSAttributedStringKey.foregroundColor: navBarTitleColor
+        ]
+        navigationBarAppearance.backIndicatorImage = R.image.icon_nav_back()
+        navigationBarAppearance.titleTextAttributes = textAttributes
+        UITextField.appearance().tintColor = themeColor
+        UITextView.appearance().tintColor = themeColor
+    }
 }
 

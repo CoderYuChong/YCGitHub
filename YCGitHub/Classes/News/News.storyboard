@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Main View Controller-->
         <scene sceneID="Qb4-D0-7Ir">
             <objects>
-                <navigationController storyboardIdentifier="RepositoriesNav" id="WPA-9o-6Nw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NewsNav" id="WPA-9o-6Nw" customClass="MainViewController" customModule="YCGitHub" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="z24-kI-S4s">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-1052" y="242"/>
         </scene>
-        <!--View Controller-->
+        <!--News View Controller-->
         <scene sceneID="1Fr-b0-IZB">
             <objects>
-                <viewController id="hZD-xd-wqz" customClass="ViewController" customModule="YCGitHub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hZD-xd-wqz" customClass="NewsViewController" customModule="YCGitHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9wX-Wj-5dh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

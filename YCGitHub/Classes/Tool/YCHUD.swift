@@ -8,18 +8,38 @@
 //
 
 import Foundation
-import MBProgressHUD
+import SVProgressHUD
+import SwiftMessages
+
 class YCHUD: NSObject {
-    class func showLoding() {
-//        let hud =
+    class func showLoding(with status: String? = nil, maskType: SVProgressHUDMaskType = .none) {
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultMaskType(maskType)
+        SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.setMinimumSize(CGSize(width: 84, height: 84))
+        SVProgressHUD.show(withStatus: status)
+    }
+    
+    class func hudHide(){
+        SVProgressHUD.dismiss()
+    }
+    
+    class func swiftMessagesHide() {
+        SwiftMessages.hide()
+    }
+    class func show(title: String, layout: MessageView.Layout = .cardView, theme: Theme = .warning, duration: SwiftMessages.Duration = .seconds(seconds: 1)) {
+        let view: MessageView =  MessageView.viewFromNib(layout: layout)
+        view.configureTheme(theme, iconStyle: .light)
+        view.configureContent(title: title, body: "")
+        view.button?.isHidden = true
+        view.bodyLabel?.isHidden = true
         
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:kKeyWindow animated:YES];
-//        hud.mode = MBProgressHUDModeText;
-//        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15.0];
-//        hud.detailsLabelText = tipStr;
-//        hud.margin = 10.f;
-//        hud.removeFromSuperViewOnHide = YES;
-//        [hud hide:YES afterDelay:1.0];
+        var config = SwiftMessages.defaultConfig
+        config.presentationStyle = .top
+        config.duration = duration
+        config.presentationContext = .window(windowLevel: UIWindowLevelNormal)
+        SwiftMessages.show(config: config, view: view)
+        
     }
     
 }

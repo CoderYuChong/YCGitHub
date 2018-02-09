@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KjA-IC-4my">
+                    <view contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="KjA-IC-4my">
                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="54"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2o-Jr-gsn">
@@ -39,7 +39,7 @@
                         <constraints>
                             <constraint firstItem="IhO-cB-EP2" firstAttribute="top" secondItem="N2o-Jr-gsn" secondAttribute="bottom" id="0va-Of-O64"/>
                             <constraint firstAttribute="trailing" secondItem="N2o-Jr-gsn" secondAttribute="trailing" id="1tg-EF-6pc"/>
-                            <constraint firstAttribute="height" constant="54" id="6hp-EH-wf8"/>
+                            <constraint firstAttribute="height" constant="54" id="VhK-Sr-0LL"/>
                             <constraint firstAttribute="bottom" secondItem="IhO-cB-EP2" secondAttribute="bottom" constant="8" id="bop-07-OlD"/>
                             <constraint firstItem="IhO-cB-EP2" firstAttribute="leading" secondItem="KjA-IC-4my" secondAttribute="leading" id="h2Q-D4-bFk"/>
                             <constraint firstItem="IhO-cB-EP2" firstAttribute="top" secondItem="N2o-Jr-gsn" secondAttribute="bottom" id="iHJ-V7-0Uo"/>

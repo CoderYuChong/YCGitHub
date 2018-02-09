@@ -10,7 +10,6 @@ import UIKit
 import UIImage_BlurredFrame
 
 
-
 class LoginViewController: UIViewController {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var accountTextField: UITextField!
@@ -21,9 +20,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var OAuthLoginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        OAuthLoginButton.setTitleColor(UIColor(white: 1.0, alpha: 0.5), for: .normal)
-//        OAuthLoginButton.setTitleColor(UIColor(white: 0.5, alpha: 0.5), for: .normal)
+        KeychainTool.clearAccessToken()
+        loginButton.setBackgroundImage(UIImage(color: themeColor, size: loginButton.bounds.size), for: .normal)
+        loginButton.setBackgroundImage(UIImage(color: UIColor("0x3bbc79", alpha: 0.5), size: loginButton.bounds.size), for: .disabled)
+        setupTextField()
         loginButtoonEnable()
         backgroundImage()
         
@@ -42,44 +42,67 @@ class LoginViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    deinit {
+        print("---LoginViewController-----")
+    }
 
 
 }
 
 extension LoginViewController {
     
+    private func setupTextField() {
+        let att = [NSAttributedStringKey.foregroundColor: UIColor("ffffff", alpha: 0.5),NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20)]
+        accountTextField.attributedPlaceholder = NSAttributedString(string: "手机号码/电子邮件", attributes: att)
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "密码", attributes: att)
+        passwordTextField.addTarget(self, action: #selector(textValueChanged), for: .editingChanged)
+        accountTextField.addTarget(self, action: #selector(textValueChanged), for: .editingChanged)
+        
+        accountTextField.text = KeychainTool.account()
+        passwordTextField.text = KeychainTool.password()
+    }
+    
     private func backgroundImage() {
         let bgImage = R.image.login_bg()?.applyBlur(withRadius: 30, tintColor: UIColor(white: 1.0, alpha: 0.3), saturationDeltaFactor: 1.8, maskImage: nil)
         loginBackgroundImageView.image = bgImage
     }
-
-    private func loginButtoonEnable() {
-        if (passwordTextField.text?.isEmpty)! && (accountTextField.text?.isEmpty)! {
-            loginButton.isEnabled = false
-        } else {
-            loginButton.isEnabled = true
-        }
-    }
     
     private func loginSuccess() {
-        
+        KeychainTool.setAccount(accountTextField.text!)
+        KeychainTool.setPassword(passwordTextField.text!)
+        self.dismiss(animated: true, completion: nil)
+        UIApplication.shared.delegate?.window??.rootViewController = MainTabBarViewController()
     }
 }
 
 extension LoginViewController: NetworkAgent {
     func loadProfileData() {
+        YCHUD.showLoding()
         request(ProfileRequest()) { (response) in
-            if let response = response {
-                printLog("----ProfileRequest----")
+            YCHUD.hudHide()
+            if response != nil {
                 self.loginSuccess()
+            } else {
+                KeychainTool.clearAccessToken()
             }
         }
     }
 
 }
 
-extension LoginViewController: UITextFieldDelegate {
+extension LoginViewController {
+    @objc func  textValueChanged() {
+         loginButtoonEnable()
+    }
     
+    private func loginButtoonEnable() {
+        if (accountTextField.text?.count != 0) && (passwordTextField.text?.count != 0){
+            loginButton.isEnabled = true
+        } else {
+            loginButton.isEnabled = false
+            
+        }
+    }
 }
 
 extension LoginViewController {
@@ -92,12 +115,17 @@ extension LoginViewController {
             return
         }
         KeychainTool.setAccessToken(username: account, password: password)
+        let aa = KeychainTool.accessToken()
+        print(aa)
         loadProfileData()
     }
     
     
     @IBAction func OAuthloginClick(_ sender: Any) {
-        
-        self.navigationController?.pushViewController(LoginOAuthController(), animated: true)
+        let loginVC = LoginOAuthController()
+        loginVC.loginResult = { success in
+            self.loadProfileData()
+        }
+        self.navigationController?.pushViewController(loginVC, animated: true)
     }
 }

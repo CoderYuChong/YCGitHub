@@ -7,9 +7,13 @@
 //
 
 import UIKit
+//import NJKWebViewProgress
 
 class LoginOAuthController: UIViewController {
-
+    
+    typealias LoginResult = (Bool)->()
+    var loginResult: LoginResult?
+    
     lazy var webView: UIWebView = {
         let webView = UIWebView()
         return webView
@@ -20,16 +24,23 @@ class LoginOAuthController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpWebView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    private func setUpWebView() {
         if #available(iOS 11.0, *) {
             webView.scrollView.contentInsetAdjustmentBehavior = .never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
-        setUpWebView()
-
-        // Do any additional setup after loading the view.
-    }
-    private func setUpWebView() {
         view.addSubview(webView)
         webView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -37,7 +48,6 @@ class LoginOAuthController: UIViewController {
         guard let url = URL(string: requestString) else {
             return
         }
-        
         let request = URLRequest(url: url)
         webView.delegate = self
         cleanCacheAndCookie()
@@ -57,8 +67,10 @@ class LoginOAuthController: UIViewController {
         cache.diskCapacity = 0
         cache.memoryCapacity = 0
     }
-
     
+    deinit {
+        print("-----LoginOAuthController-------")
+    }
 }
 
 extension LoginOAuthController: UIWebViewDelegate {
@@ -68,14 +80,21 @@ extension LoginOAuthController: UIWebViewDelegate {
             guard let code = request.url?.absoluteString.urlOfKey(key: "code") else {
                 return false
             }
-            
             loadAccessToken(code)
             return false
         }
-
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         return true
     }
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
 }
+
 
 extension LoginOAuthController: NetworkAgent {
     func loadAccessToken(_ code: String) {
@@ -83,6 +102,7 @@ extension LoginOAuthController: NetworkAgent {
             if let access_token = response?.access_token  {
                 printLog(access_token)
                 KeychainTool.setAccessToken(username: access_token, password: "x-oauth-basic")
+                self.loginResult?(true)
                 self.navigationController?.popViewController(animated: true)
             }
         }

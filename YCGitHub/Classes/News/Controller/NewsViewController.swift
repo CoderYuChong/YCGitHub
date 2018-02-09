@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RepositoriesViewController: UIViewController {
+class NewsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -12,26 +12,17 @@ class MainViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
-        // Do any additional setup after loading the view.
+//        self.navigationBar.backIndicatorImage = R.image.icon_nav_back()
+//        self.navigationBar.backIndicatorTransitionMaskImage = R.image.icon_nav_back()
+//        let backItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+//        self.navigationItem.backBarButtonItem = backItem
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if self.viewControllers.count > 0 {
+            viewController.hidesBottomBarWhenPushed = true;
+        }
+        
+        super.pushViewController(viewController, animated: animated)
     }
-    fileprivate func setupNavBar() {
-        let navigationBarAppearance = UINavigationBar.appearance()
-        navigationBarAppearance.setBackgroundImage(UIImage(color: navBarbackgroundColor), for: .default)
-        navigationBarAppearance.tintColor = themeColor
-        navigationBarAppearance.isTranslucent = false
-        let textAttributes = [
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: navTitleFontSize),
-            NSAttributedStringKey.foregroundColor: navBarTitleColor
-            ]
-        navigationBarAppearance.backIndicatorImage = R.image.icon_nav_back()
-        navigationBarAppearance.titleTextAttributes = textAttributes
-    }
-    
-
 }

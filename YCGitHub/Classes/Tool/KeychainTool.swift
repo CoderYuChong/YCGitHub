@@ -26,7 +26,35 @@ class KeychainTool {
         let keychain = Keychain(service: yc_serviceName)
         try? keychain.set(token, key: yc_accessToken)
     }
+    class func clearAccessToken() {
+        let keychain = Keychain(service: yc_serviceName)
+        try? keychain.set("", key: yc_accessToken)
+    }
+    class func password() -> String {
+        let keychain = Keychain(service: yc_serviceName)
+        guard  let password = try? keychain.getString(yc_Password) else {
+            return ""
+        }
+        return password ?? ""
+    }
     
+    class func setPassword(_ password: String) {
+        let keychain = Keychain(service: yc_serviceName)
+        try? keychain.set(password, key: yc_Password)
+    }
+    
+    class func account() -> String {
+        let keychain = Keychain(service: yc_serviceName)
+        guard  let token = try? keychain.getString(yc_Account) else {
+            return ""
+        }
+        return token ?? ""
+    }
+    
+    class func setAccount(_ account: String) {
+        let keychain = Keychain(service: yc_serviceName)
+        try? keychain.set(account, key: yc_Account)
+    }
 }
 
 

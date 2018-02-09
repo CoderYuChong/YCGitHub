@@ -46,15 +46,17 @@ class ProfileTableViewControllerDataSource: NSObject,UITableViewDataSource {
             let normalmodel =  viewModel.cellModel as? NormalTableViewCellModel
             cell.textLabel?.text = normalmodel?.titleString.count == 0 ? "Not Set" : normalmodel?.titleString
             cell.imageView?.image = UIImage(named: (normalmodel?.iconName)!)
-            if (normalmodel?.titleString.isEmpty)!{
-                cell.accessoryType = .none
-            } else {
+            
+            if (normalmodel?.isArrow)! {
                 cell .accessoryType = .disclosureIndicator
+            } else {
+                cell.selectionStyle = .none
+                cell.accessoryType = .none
             }
             return cell
         }
-        
         return cell
-        
     }
 }
+
+

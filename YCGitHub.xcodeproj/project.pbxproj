@@ -14,8 +14,8 @@
 		6A0F0B542024AAB10006C11B /* ExampleBasicContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0F0B522024AAB00006C11B /* ExampleBasicContentView.swift */; };
 		6A0F0B552024AAB10006C11B /* ExampleBouncesContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0F0B532024AAB10006C11B /* ExampleBouncesContentView.swift */; };
 		6A236FA120233FF600075130 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A236FA020233FF600075130 /* LaunchScreen.storyboard */; };
-		6A236FAA2023437300075130 /* RepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A236FA92023437300075130 /* RepositoriesViewController.swift */; };
-		6A236FAC2023439700075130 /* Repositories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A236FAB2023439700075130 /* Repositories.storyboard */; };
+		6A236FAA2023437300075130 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A236FA92023437300075130 /* NewsViewController.swift */; };
+		6A236FAC2023439700075130 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A236FAB2023439700075130 /* News.storyboard */; };
 		6A2B2C3D2025FE0D0015CFD5 /* YCRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B2C3C2025FE0D0015CFD5 /* YCRefreshNormalHeader.swift */; };
 		6A6FE1E72029D12000D9FDA2 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A6FE1E62029D12000D9FDA2 /* Profile.storyboard */; };
 		6A6FE1EA2029D18600D9FDA2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FE1E92029D18600D9FDA2 /* ProfileViewController.swift */; };
@@ -41,6 +41,8 @@
 		C056D752202C092B00478378 /* FindeActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056D751202C092B00478378 /* FindeActivityViewController.swift */; };
 		C056D759202C1AF300478378 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056D758202C1AF300478378 /* LoginViewController.swift */; };
 		C056D75B202C1AFE00478378 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C056D75A202C1AFE00478378 /* Login.storyboard */; };
+		C05B3352202D3D0600C17507 /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B3351202D3D0600C17507 /* UIViewController-Extension.swift */; };
+		C05B3365202D8D3800C17507 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C05B3364202D8D3800C17507 /* Settings.storyboard */; };
 		C0ECF656202430E2002D7AAF /* String-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF655202430E2002D7AAF /* String-Extension.swift */; };
 		C0ECF659202434CC002D7AAF /* DeBug.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF658202434CC002D7AAF /* DeBug.swift */; };
 		C0ECF65B20244196002D7AAF /* NotificationCenter-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF65A20244196002D7AAF /* NotificationCenter-Extension.swift */; };
@@ -84,8 +86,8 @@
 		6A0F0B522024AAB00006C11B /* ExampleBasicContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleBasicContentView.swift; sourceTree = "<group>"; };
 		6A0F0B532024AAB10006C11B /* ExampleBouncesContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleBouncesContentView.swift; sourceTree = "<group>"; };
 		6A236FA020233FF600075130 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6A236FA92023437300075130 /* RepositoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewController.swift; sourceTree = "<group>"; };
-		6A236FAB2023439700075130 /* Repositories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Repositories.storyboard; sourceTree = "<group>"; };
+		6A236FA92023437300075130 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		6A236FAB2023439700075130 /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		6A2B2C3C2025FE0D0015CFD5 /* YCRefreshNormalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YCRefreshNormalHeader.swift; sourceTree = "<group>"; };
 		6A6FE1E62029D12000D9FDA2 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		6A6FE1E92029D18600D9FDA2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,8 @@
 		C056D751202C092B00478378 /* FindeActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindeActivityViewController.swift; sourceTree = "<group>"; };
 		C056D758202C1AF300478378 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C056D75A202C1AFE00478378 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		C05B3351202D3D0600C17507 /* UIViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
+		C05B3364202D8D3800C17507 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		C0ECF655202430E2002D7AAF /* String-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-Extension.swift"; sourceTree = "<group>"; };
 		C0ECF658202434CC002D7AAF /* DeBug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeBug.swift; sourceTree = "<group>"; };
 		C0ECF65A20244196002D7AAF /* NotificationCenter-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter-Extension.swift"; sourceTree = "<group>"; };
@@ -180,12 +184,12 @@
 		6A236FA22023403F00075130 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C05B3363202D8D2800C17507 /* Setting */,
 				6A6FE1E52029D10C00D9FDA2 /* Profile */,
-				C015B8DA2029A49100328BF0 /* WebView */,
 				C015B8D320299AAB00328BF0 /* Login */,
 				C0F6CB242027FC0C00F94CAB /* LanguageScreening */,
 				C0ECF694202464EB002D7AAF /* Trending */,
-				6A236FA52023417D00075130 /* Repositories */,
+				6A236FA52023417D00075130 /* News */,
 				6A236FA32023405300075130 /* Main */,
 				C0ECF657202434BD002D7AAF /* Tool */,
 				C003A6072024106C004D70EF /* Extension */,
@@ -218,21 +222,21 @@
 			name = SupportFile;
 			sourceTree = "<group>";
 		};
-		6A236FA52023417D00075130 /* Repositories */ = {
+		6A236FA52023417D00075130 /* News */ = {
 			isa = PBXGroup;
 			children = (
 				6A236FA8202341C900075130 /* Model */,
 				6A236FA7202341C200075130 /* View */,
 				6A236FA6202341B400075130 /* Controller */,
-				6A236FAB2023439700075130 /* Repositories.storyboard */,
+				6A236FAB2023439700075130 /* News.storyboard */,
 			);
-			path = Repositories;
+			path = News;
 			sourceTree = "<group>";
 		};
 		6A236FA6202341B400075130 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6A236FA92023437300075130 /* RepositoriesViewController.swift */,
+				6A236FA92023437300075130 /* NewsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -287,6 +291,7 @@
 				C0ECF65C202442E7002D7AAF /* UserDefault-Extension.swift */,
 				C00FCD682027F73200F7CA83 /* UIImage-Extension.swift */,
 				C015B8D120298FDE00328BF0 /* UIImageView-Extension.swift */,
+				C05B3351202D3D0600C17507 /* UIViewController-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -331,11 +336,20 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		C015B8DA2029A49100328BF0 /* WebView */ = {
+		C05B3363202D8D2800C17507 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				C05B3366202D8D5800C17507 /* Controller */,
+				C05B3364202D8D3800C17507 /* Settings.storyboard */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		C05B3366202D8D5800C17507 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = WebView;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		C0ECF657202434BD002D7AAF /* Tool */ = {
@@ -548,6 +562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C056D75B202C1AFE00478378 /* Login.storyboard in Resources */,
+				C05B3365202D8D3800C17507 /* Settings.storyboard in Resources */,
 				C0FF1D94202AE63700483D3C /* ProfileNumbersTableViewCell.xib in Resources */,
 				C0F6CB362028269700F94CAB /* LanguageScreeningTableViewCell.xib in Resources */,
 				C015B8CA20297FA700328BF0 /* RepositoriesTableViewCell.xib in Resources */,
@@ -562,7 +577,7 @@
 				C0F6CB312028116F00F94CAB /* Languages.json in Resources */,
 				C0ECF6962024654C002D7AAF /* Trending.storyboard in Resources */,
 				C0F6CB262027FC6200F94CAB /* LanguageScreening.storyboard in Resources */,
-				6A236FAC2023439700075130 /* Repositories.storyboard in Resources */,
+				6A236FAC2023439700075130 /* News.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,9 +629,10 @@
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/NJKWebViewProgress/NJKWebViewProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImage+BlurredFrame/UIImage_BlurredFrame.framework",
@@ -629,9 +645,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NJKWebViewProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImage_BlurredFrame.framework",
@@ -664,7 +681,7 @@
 			files = (
 				C015B8DC2029A4C100328BF0 /* LoginOAuthController.swift in Sources */,
 				C0F6CB352028269700F94CAB /* LanguageScreeningTableViewCell.swift in Sources */,
-				6A236FAA2023437300075130 /* RepositoriesViewController.swift in Sources */,
+				6A236FAA2023437300075130 /* NewsViewController.swift in Sources */,
 				C053FE71202A93A2003B70D8 /* Hud.swift in Sources */,
 				C003A60920241CAE004D70EF /* UIColor-Extension.swift in Sources */,
 				C0ECF69120245DCD002D7AAF /* NetworkAgent.swift in Sources */,
@@ -674,6 +691,7 @@
 				C0ECF659202434CC002D7AAF /* DeBug.swift in Sources */,
 				C0FF1D87202AD61F00483D3C /* ProfileRequest.swift in Sources */,
 				6A0F0B512024A1290006C11B /* MainTabBarViewController.swift in Sources */,
+				C05B3352202D3D0600C17507 /* UIViewController-Extension.swift in Sources */,
 				C056D759202C1AF300478378 /* LoginViewController.swift in Sources */,
 				6A0F0B4F20249A4D0006C11B /* MainViewController.swift in Sources */,
 				C015B8C920297FA700328BF0 /* RepositoriesTableViewCell.swift in Sources */,

@@ -32,3 +32,6 @@ let urlScheme: String = "ycgithub"
 
 let yc_serviceName: String = "com.yuchong.ycgithub"
 let yc_accessToken: String = "AccessToken"
+
+let yc_Account: String = "yc_Account"
+let yc_Password: String = "yc_Password"

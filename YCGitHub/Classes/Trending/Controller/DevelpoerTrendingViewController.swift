@@ -52,9 +52,6 @@ extension DevelpoerTrendingViewController: NetworkAgent {
             self.tableView.endHeaderRefreshing()
             if let response = response {
                 let trending = response as TrendingDevelpoerList
-//                guard let items = trending.items else {
-//                    return
-//                }
                 self.develpoerList = trending.items
                 self.tableView.reloadData()
             }
@@ -91,4 +88,15 @@ extension DevelpoerTrendingViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44.0
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        let develop = develpoerList[indexPath.row]
+        let profileVC = R.storyboard.profile.profileViewController()!
+        profileVC.userName = develop.user
+        profileVC.profileViewType = .others
+        profileVC.title = develop.user
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
 }
