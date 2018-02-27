@@ -48,7 +48,7 @@ extension DevelpoerTrendingViewController {
 extension DevelpoerTrendingViewController: NetworkAgent {
     @objc func loadData() {
         let trendingRequest = TrendingDevelpoerRequest()
-        request(trendingRequest) { (response) in
+        request(trendingRequest) { (response, _) in
             self.tableView.endHeaderRefreshing()
             if let response = response {
                 let trending = response as TrendingDevelpoerList

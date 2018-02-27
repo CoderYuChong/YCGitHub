@@ -14,7 +14,7 @@ import HandyJSON
 import SwiftMessages
 extension NetworkAgent {
     @discardableResult
-    func request<T: BaseRequest> (_ form: T, hander: @escaping (T.Response?) -> Void) -> DataRequest {
+    func request<T: BaseRequest> (_ form: T, hander: @escaping (T.Response?, DefaultDataResponse) -> Void) -> DataRequest {
         let url = form.host + form.path
         printLog(url)
         let dataRequest = Alamofire.request(url, method: form.method, parameters: form.parameters(), encoding: form.encoding(), headers: form.headers())
@@ -23,9 +23,10 @@ extension NetworkAgent {
             printLog("Request: \(String(describing: response.request))")
             printLog("Response: \(String(describing: response.response))")
             printLog("Error: \(String(describing: response.error))")
+            
             if response.response?.statusCode == 401 {
                 YCHUD.hudHide()
-                DispatchQueue.main.async { hander(nil) }
+                DispatchQueue.main.async { hander(nil, response) }
                 let topVC = UIApplication.topViewController()
                 if  let _ =  topVC as? LoginViewController{
                     YCHUD.show(title: "登录失败")
@@ -38,10 +39,10 @@ extension NetworkAgent {
             }
             
             if let data = response.data, let res = T.Response.parse(data: data) {
-                DispatchQueue.main.async { hander(res) }
+                DispatchQueue.main.async { hander(res, response) }
             } else {
                 YCHUD.show(title: "网络异常，请重试")
-                DispatchQueue.main.async { hander(nil) }
+                DispatchQueue.main.async { hander(nil, response) }
             }
         }
         

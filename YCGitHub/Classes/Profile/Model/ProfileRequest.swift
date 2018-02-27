@@ -38,7 +38,7 @@ struct ProfileModel: DecodableJSON {
     let receivedEventsURL: String
     let type: String
     let siteAdmin: Bool
-    let name: String
+    let name: String?
     let company: String?
     let blog: String
     let location: String?
@@ -113,22 +113,4 @@ struct ProfileModel: DecodableJSON {
 //        case privateRepos = "private_repos"
 //    }
 //}
-
-// MARK: Encode/decode helpers
-
-class JSONNull: Codable {
-    public init() {}
-
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encodeNil()
-    }
-}
 

@@ -10,52 +10,52 @@ import Foundation
 import UIKit
 
 class ProfileTableViewControllerDataSource: NSObject,UITableViewDataSource {
-    var settings: [NormalTableViewCellModel]
-    var dataSource: Array<[ProfileViewModel]>
+    var dataSource: [ProfileViewModel]
     weak var owner: ProfileViewController?
-    enum Section: Int {
-        case header = 0,settings,max
-    }
+ 
     
-    init(dataSource: Array<[ProfileViewModel]>, settings: [NormalTableViewCellModel], owner: ProfileViewController?) {
-        self.settings = settings
+    init(dataSource: [ProfileViewModel], owner: ProfileViewController?) {
         self.dataSource = dataSource
         self.owner = owner
     }
-    func numberOfSections(in tableView: UITableView) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource[section].count
-    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let viewModel = dataSource[indexPath.section][indexPath.row]
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.cellIdentifier, for: indexPath)
-       
-        if (viewModel.cellIdentifier == R.nib.profileHederTableViewCell.identifier) {
-        
-            let profile = cell as! ProfileHederTableViewCell
-            profile.profileModel = viewModel.cellModel as? ProfileModel
-        } else if (viewModel.cellIdentifier == R.nib.profileNumbersTableViewCell.identifier) {
-            
-            let profile = cell as! ProfileNumbersTableViewCell
-            profile.profileModel = viewModel.cellModel as? ProfileModel
-        } else {
-            let normalmodel =  viewModel.cellModel as? NormalTableViewCellModel
-            cell.textLabel?.text = normalmodel?.titleString.count == 0 ? "Not Set" : normalmodel?.titleString
-            cell.imageView?.image = UIImage(named: (normalmodel?.iconName)!)
-            
-            if (normalmodel?.isArrow)! {
-                cell .accessoryType = .disclosureIndicator
-            } else {
-                cell.selectionStyle = .none
-                cell.accessoryType = .none
-            }
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCellID", for: indexPath)
+        cell.accessoryType = .disclosureIndicator
+        let model = dataSource[indexPath.row]
+        cell.imageView?.image = UIImage(named: model.iconName)
+        cell.textLabel?.text = model.titleName
         return cell
+    }
+}
+
+
+extension ProfileTableViewControllerDataSource: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let model = dataSource[indexPath.row]
+        routing(model.profileRowType)
+        
+    }
+    
+    private func routing(_ profileRowType: ProfileRowType) {
+        
+        switch profileRowType {
+        case .Starred:
+            let repositories = RepositoriesViewController()
+            repositories.title = "Starred"
+            let name = (self.owner?.profileModel?.login)!
+            repositories.repositoriesPath = "users/\(name)/starred"
+            self.owner?.navigationController?.pushViewController(repositories, animated: true)
+        default: break
+            
+        }
+     
+        
     }
 }
 

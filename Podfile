@@ -19,4 +19,5 @@ target 'YCGitHub' do
   pod 'UIImage+BlurredFrame'
   pod 'SVProgressHUD'
   pod 'NJKWebViewProgress'
+  pod 'YYText'
 end

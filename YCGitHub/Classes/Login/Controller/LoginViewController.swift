@@ -78,7 +78,7 @@ extension LoginViewController {
 extension LoginViewController: NetworkAgent {
     func loadProfileData() {
         YCHUD.showLoding()
-        request(ProfileRequest()) { (response) in
+        request(ProfileRequest()) { (response, _) in
             YCHUD.hudHide()
             if response != nil {
                 self.loginSuccess()

@@ -8,18 +8,27 @@
 
 import Foundation
 import UIKit
+enum ProfileRowType: String {
+    case Starred
+    case Event
+    case Organizations
+    case Repositories
+    case Gists
+    case Blog
+}
 
 class ProfileViewModel: NSObject {
-//    let cellHeight: CGFloat
-    let cellModel: AnyObject
-    let cellIdentifier: String
-    let profileViewType: ProfileViewType
+    let profileRowType: ProfileRowType
     
-    init(cellModel: AnyObject, cellIdentifier: String, profileViewType: ProfileViewType = .mine) {
-        self.cellIdentifier = cellIdentifier
-        self.cellModel = cellModel
-        self.profileViewType = profileViewType
-//        self.cellHeight = cellHeight
+    let titleName: String
+    let iconName: String
+    let url: String
+    
+    init(profileRowType: ProfileRowType, iconName: String, url: String) {
+        self.profileRowType = profileRowType
+        self.titleName = profileRowType.rawValue
+        self.iconName = iconName
+        self.url = url
     }
     
 }

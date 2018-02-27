@@ -19,6 +19,7 @@ extension NetworkConfig {
         if token.count == 0  {
             return [:]
         }
+        printLog("--token:\(token)--")
         return ["Authorization": token]
     }
     

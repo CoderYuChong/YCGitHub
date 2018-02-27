@@ -45,7 +45,7 @@ extension RepositoriesTrendingViewController {
 extension RepositoriesTrendingViewController: NetworkAgent {
     @objc func loadData() {
         let trendingRequest = TrendingRepositoriesRequest()
-        request(trendingRequest) { (response) in
+        request(trendingRequest) { (response, _) in
             self.tableView.endHeaderRefreshing()
             if let response = response {
                 let trending = response as TrendingRepositoriesList

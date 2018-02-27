@@ -22,6 +22,15 @@ class DevelpoerTableViewCell: UITableViewCell {
             userIcon.setImage(with: develpoerModel?.developer_avatar, placeholder: R.image.icon_avatar_default())
         }
     }
+    
+    
+    var develpoer: DeveloperModel? {
+        didSet {
+            userNameLable.text = (develpoer?.login ?? "")
+            userAddressLable.text = develpoer?.url
+            userIcon.setImage(with: develpoer?.avatarURL, placeholder: R.image.icon_avatar_default())
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

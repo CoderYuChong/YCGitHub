@@ -32,6 +32,7 @@ extension UIScrollView {
         // 当底部控件出现多少时就自动刷新(默认为1.0，也就是底部控件完全出现时，才会自动刷新)
         footer?.triggerAutomaticallyRefreshPercent = triggerAutomaticallyRefreshPercent
         // 设置footer
+        footer?.isHidden = true
         self.mj_footer = footer
         
     }

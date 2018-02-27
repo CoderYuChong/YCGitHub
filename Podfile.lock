@@ -18,6 +18,7 @@ PODS:
   - SwiftMessages (4.1.0)
   - UIImage+BlurredFrame (0.0.4)
   - XLPagerTabStrip (8.0.0)
+  - YYText (1.0.7)
 
 DEPENDENCIES:
   - Alamofire
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - SwiftMessages
   - UIImage+BlurredFrame
   - XLPagerTabStrip
+  - YYText
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -49,7 +51,8 @@ SPEC CHECKSUMS:
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   UIImage+BlurredFrame: ad2f7195c6947ea3117c7d202f75a51958d5061a
   XLPagerTabStrip: d1ab378af0923320ec0b5eab11d7b2f803d31261
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 807c67da2aa7603e626bc15ba52df2c1898cff51
+PODFILE CHECKSUM: 3c0492d34c0595841bd6b150fe2df27403710705
 
 COCOAPODS: 1.4.0.beta.2

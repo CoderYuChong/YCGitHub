@@ -98,7 +98,7 @@ extension LoginOAuthController: UIWebViewDelegate {
 
 extension LoginOAuthController: NetworkAgent {
     func loadAccessToken(_ code: String) {
-        request(LoginRequest(code: code)) { (response) in
+        request(LoginRequest(code: code)) { (response, _) in
             if let access_token = response?.access_token  {
                 printLog(access_token)
                 KeychainTool.setAccessToken(username: access_token, password: "x-oauth-basic")

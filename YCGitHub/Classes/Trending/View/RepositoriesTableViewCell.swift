@@ -24,6 +24,19 @@ class RepositoriesTableViewCell: UITableViewCell {
             forkNumberLable.text = repositoriesModel?.forks
         }
     }
+    
+    
+    
+    var repositories: RepositoriesModelElement? {
+        didSet {
+            respoNameLable.text = repositories?.fullName
+            respoDescLable.text = repositories?.description
+            languageNameLable.text = repositories?.language
+            starNumberLable.text = String(describing: repositories!.stargazersCount)
+            forkNumberLable.text = String(describing: repositories!.forks)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

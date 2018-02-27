@@ -13,6 +13,7 @@ enum ProfileViewType {
     case mine, others
 }
 
+let profileCellID = "ProfileCellID"
 class ProfileViewController: UITableViewController {
 
     var profileViewType: ProfileViewType = .mine
@@ -20,6 +21,11 @@ class ProfileViewController: UITableViewController {
     let normalCellID = "normalCellID"
     var userName: String?
     var dataSource: ProfileTableViewControllerDataSource!
+    lazy var headerView: ProfileHeaderView = {
+        let headerView = R.nib.profileHeaderView.firstView(owner: self)!
+        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 164)
+        return headerView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +35,7 @@ class ProfileViewController: UITableViewController {
         // Do any additional setup after loading the view.
     }
     
-    private func setUpSettingsData() -> [NormalTableViewCellModel] {
-        let setting = NormalTableViewCellModel(iconName: "icon_profile_setting", titleString: "设置", isArrow: true)
-        let about = NormalTableViewCellModel(iconName: "icon_profile_about", titleString: "关于", isArrow: true)
-        let feedback = NormalTableViewCellModel(iconName: "icon_profile_feedback", titleString: "反馈", isArrow: true)
-        return [setting, about, feedback]
-    }
+    
     private func setUpTableView() {
         
         if #available(iOS 11.0, *) {
@@ -44,9 +45,10 @@ class ProfileViewController: UITableViewController {
             self.automaticallyAdjustsScrollViewInsets = false
         }
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: normalCellID)
-        tableView.register(R.nib.profileHederTableViewCell)
-        tableView.register(R.nib.profileNumbersTableViewCell)
+        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: profileCellID)
+        let tempView = UIView(frame: headerView.bounds)
+        tempView.addSubview(headerView)
+        tableView.tableHeaderView = tempView
     }
     
     private func setupRefresh() {
@@ -58,27 +60,11 @@ class ProfileViewController: UITableViewController {
     }
 
 }
-extension ProfileViewController {
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10.0
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.1
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        
-        
-    }
-}
 
 
 extension ProfileViewController: NetworkAgent {
     @objc func loadProfileData() {
-        request(ProfileRequest(userName: userName)) { (response) in
+        request(ProfileRequest(userName: userName)) { (response, _) in
             self.tableView.endHeaderRefreshing()
             if let response = response {
                 self.setupViewModel(response)
@@ -88,36 +74,22 @@ extension ProfileViewController: NetworkAgent {
     }
     
     private func setupViewModel(_ profileModel: ProfileModel) {
-        var sectionArr = [Any]()
-        let profileHeder = ProfileViewModel(cellModel: profileModel as AnyObject, cellIdentifier: R.nib.profileHederTableViewCell.identifier, profileViewType: profileViewType)
-        let profileNumbers = ProfileViewModel(cellModel: profileModel as AnyObject, cellIdentifier: R.nib.profileNumbersTableViewCell.identifier, profileViewType: profileViewType)
-        
-        
-        
-        sectionArr.append([profileHeder,profileNumbers])
+        let starred = ProfileViewModel(profileRowType: .Starred, iconName: "", url: profileModel.starredURL)
+        let event = ProfileViewModel(profileRowType: .Event, iconName: "", url: profileModel.eventsURL)
+        let organizations = ProfileViewModel(profileRowType: .Organizations, iconName: "", url: profileModel.organizationsURL)
+//        let repo = ProfileViewModel(profileRowType: .Repositories, iconName: "", url: profileModel.reposURL)
+        let gists = ProfileViewModel(profileRowType: .Gists, iconName: "", url: profileModel.gistsURL)
+        var sectionArr: [ProfileViewModel] = [starred, event, organizations, gists]
 
-        let company = NormalTableViewCellModel(iconName: "icon_profile_company", titleString: profileModel.company ?? "", isArrow: false)
-        let email = NormalTableViewCellModel(iconName: "icon_profile_email", titleString: profileModel.email ?? "Not Set", isArrow: false)
-        let place = NormalTableViewCellModel(iconName: "icon_profile_place", titleString: profileModel.location ?? "", isArrow: false)
-        
-        let blog = NormalTableViewCellModel(iconName: "icon_profile_link", titleString: profileModel.blog.count == 0 ? profileModel.blog :"", isArrow: (profileModel.blog.count != 0))
-        
-        
-        let companyCell = ProfileViewModel(cellModel: company as AnyObject, cellIdentifier: normalCellID, profileViewType: profileViewType)
-        let emailCell = ProfileViewModel(cellModel: email as AnyObject, cellIdentifier: normalCellID, profileViewType: profileViewType)
-        let placeCell = ProfileViewModel(cellModel: place as AnyObject, cellIdentifier: normalCellID, profileViewType: profileViewType)
-        let blogCell = ProfileViewModel(cellModel: blog as AnyObject, cellIdentifier: normalCellID, profileViewType: profileViewType)
-        
-        sectionArr.append([companyCell,emailCell,placeCell,blogCell])
-        if profileViewType == .mine {
-            let setting = NormalTableViewCellModel(iconName: "icon_profile_setting", titleString: "设置", isArrow: true)
-            let settingCell = ProfileViewModel(cellModel: setting as AnyObject, cellIdentifier: normalCellID, profileViewType: profileViewType)
-            sectionArr.append([settingCell])
+        if profileModel.blog.count != 0 {
+            let blog = ProfileViewModel(profileRowType: .Blog, iconName: "", url: profileModel.blog)
+            sectionArr.append(blog)
         }
-        
-        dataSource = ProfileTableViewControllerDataSource(dataSource: sectionArr as! Array<[ProfileViewModel]>, settings: setUpSettingsData(), owner: nil)
-        
+        dataSource = ProfileTableViewControllerDataSource(dataSource: sectionArr, owner: self)
+        headerView.profileModel = profileModel
+        self.profileModel = profileModel
         tableView.dataSource = dataSource
+        tableView.delegate = dataSource
     }
     
 }
