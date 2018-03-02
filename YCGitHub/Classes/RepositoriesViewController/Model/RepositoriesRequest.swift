@@ -9,7 +9,7 @@
 import Foundation
 
 class RepositoriesRequest: BaseRequest {
-    typealias Response = RepositoriesModel
+    typealias Response = RepositoriesInfo
     var repositoriesPath: String
     var page: Int
     var path: String {
@@ -26,11 +26,11 @@ class RepositoriesRequest: BaseRequest {
 
 }
 
-struct RepositoriesModel: DecodableJSON {
-    var data: [RepositoriesModelElement]
+struct RepositoriesInfo: DecodableJSON {
+    var data: [RepositoriesModel]
 }
 
-struct RepositoriesModelElement: Codable {
+struct RepositoriesModel: DecodableJSON {
     let id: Int
     let name, fullName: String
     let repositoriesModelPrivate: Bool
@@ -47,6 +47,7 @@ struct RepositoriesModelElement: Codable {
     let archiveURL, downloadsURL, issuesURL, pullsURL: String
     let milestonesURL, notificationsURL, labelsURL, releasesURL: String
     let deploymentsURL, createdAt, updatedAt, pushedAt: String
+//    let createdAt, updatedAt, pushedAt: NSDate?
     let gitURL, sshURL, cloneURL, svnURL: String
     let homepage: String?
     let size, stargazersCount, watchersCount: Int
@@ -60,7 +61,7 @@ struct RepositoriesModelElement: Codable {
 //    let license: License?
     let forks, openIssues, watchers: Int
     let defaultBranch: String
-//    let owner: Owner?
+    let owner: Owner?
     
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -128,6 +129,6 @@ struct RepositoriesModelElement: Codable {
         case openIssues = "open_issues"
         case watchers
         case defaultBranch = "default_branch"
-//        case owner
+        case owner
     }
 }

@@ -68,8 +68,3 @@ extension UIApplication {
     
 }
 
-//
-//class FindeActivityViewController {
-//
-//}
-

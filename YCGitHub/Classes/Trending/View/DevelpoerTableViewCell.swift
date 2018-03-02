@@ -14,7 +14,6 @@ class DevelpoerTableViewCell: UITableViewCell {
     @IBOutlet weak var userIcon: UIImageView!
     @IBOutlet weak var userNameLable: UILabel!
     @IBOutlet weak var userAddressLable: UILabel!
-    
     var develpoerModel: TrendingDevelpoerModel? {
         didSet {
             userNameLable.text = (develpoerModel?.user ?? "") + (develpoerModel?.full_name ?? "")
@@ -29,6 +28,7 @@ class DevelpoerTableViewCell: UITableViewCell {
             userNameLable.text = (develpoer?.login ?? "")
             userAddressLable.text = develpoer?.url
             userIcon.setImage(with: develpoer?.avatarURL, placeholder: R.image.icon_avatar_default())
+        
         }
     }
     override func awakeFromNib() {

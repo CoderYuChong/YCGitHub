@@ -24,7 +24,7 @@ extension String {
         for match in matches {
             let range = match.range(at: 2)
             let tagValue = self.subString(start: range.location, length: range.length)
-                return tagValue;
+                return tagValue
         }
         return ""
     }
@@ -50,6 +50,10 @@ extension String {
     }
     
 }
+
+
+
+// MARK: - Base64
 extension String {
     /// Encode a String to Base64
     func toBase64() -> String {
@@ -62,6 +66,7 @@ extension String {
         return String(data: data, encoding: .utf8)
     }
 }
+
 extension String {
     var data: Data {
         return Data(utf8)
@@ -80,3 +85,77 @@ extension String {
 extension Data {
     var string: String? { return String(data: self, encoding: .utf8) }
 }
+
+
+
+
+
+// MARK: - 日期处理
+extension String {
+    func timeString() -> String {
+        
+        // 1.创建时间格式化对象
+        let fmt = DateFormatter()
+        
+        fmt.locale = Locale(identifier: "en")
+        //        fmt.dateFormat = "EEE MM dd HH:mm:ss Z yyyy"
+        fmt.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        // 2.获取时间
+        
+        guard let createDate = fmt.date(from: self) else {
+            return ""
+        }
+        
+        // 3.获取当前时间
+        let nowDate = Date()
+        
+        // 4.获取创建时间和当前时间差
+        let interval = Int(nowDate.timeIntervalSince(createDate))
+        
+        // 5.判断时间显示的格式
+        // 5.1.1分钟之内
+        if interval < 60 {
+            return "刚刚"
+        }
+        
+        // 5.2.一个小时内
+        if interval < 60 * 60 {
+            
+            return "\(interval / 60) minutes ago"
+        }
+        
+        // 5.3.一天之内
+        if interval < 60 * 60 * 24 {
+            return "\(interval / 60 / 60) hours ago"
+        }
+        
+        // 6.其他时间的显示
+        // 6.1.创建日期对象
+        let calendar = NSCalendar.current
+        
+        // 6.2.昨天的显示
+        if calendar.isDateInYesterday(createDate) {
+            fmt.dateFormat = "HH:mm"
+            let timeString = fmt.string(from: createDate)
+            return "yesterday \(timeString)"
+        }
+        
+        let cpns = calendar.dateComponents([.year], from: createDate, to: nowDate)
+        if cpns.year! < 1 {
+            fmt.dateFormat = "MM-dd HH:mm"
+            let timeString = fmt.string(from: createDate)
+            return timeString
+        }
+        //
+        //        // 6.4.一年以上
+        fmt.dateFormat = "yyyy-MM-dd HH:mm"
+        let timeString = fmt.string(from: createDate)
+        
+        return timeString
+    }
+}
+
+
+
+

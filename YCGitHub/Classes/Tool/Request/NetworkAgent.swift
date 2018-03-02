@@ -41,7 +41,7 @@ extension NetworkAgent {
             if let data = response.data, let res = T.Response.parse(data: data) {
                 DispatchQueue.main.async { hander(res, response) }
             } else {
-                YCHUD.show(title: "网络异常，请重试")
+//                YCHUD.show(title: "网络异常，请重试")
                 DispatchQueue.main.async { hander(nil, response) }
             }
         }

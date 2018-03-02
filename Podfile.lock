@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (4.6.0)
-  - ESTabBarController-swift (2.5)
+  - ESTabBarController-swift (2.6.1)
   - HandyJSON (4.0.0-beta.1)
   - KeychainAccess (3.1.0)
-  - Kingfisher (4.6.1)
+  - Kingfisher (4.6.3)
   - MJRefresh (3.1.15.3)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
@@ -14,7 +14,7 @@ PODS:
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
   - SnapKit (4.0.0)
-  - SVProgressHUD (2.2.2)
+  - SVProgressHUD (2.2.5)
   - SwiftMessages (4.1.0)
   - UIImage+BlurredFrame (0.0.4)
   - XLPagerTabStrip (8.0.0)
@@ -38,16 +38,16 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  ESTabBarController-swift: 8daa432f2a9be8ebd25101dc46c84472fd760512
+  ESTabBarController-swift: 1e629e60bc6a87c1ea92a5309489b9f8dde15fa2
   HandyJSON: 428bb18e2c34c2a77361accebf90cf64e4f74118
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
-  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  Kingfisher: 98e6d5b5e807645743e8ed5ececd25d688d38452
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   UIImage+BlurredFrame: ad2f7195c6947ea3117c7d202f75a51958d5061a
   XLPagerTabStrip: d1ab378af0923320ec0b5eab11d7b2f803d31261

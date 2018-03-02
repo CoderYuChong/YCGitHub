@@ -13,13 +13,12 @@ class RepositoriesViewController: UITableViewController {
     var page: Int = 1
     lazy var repositoriesRequest: RepositoriesRequest = RepositoriesRequest(repositoriesPath)
     
-    lazy var repositoriesList: [RepositoriesModelElement] = [RepositoriesModelElement]()
+    lazy var repositoriesList: [RepositoriesModel] = [RepositoriesModel]()
+    lazy var dataSource: RepositoriesTableViewDataSource = RepositoriesTableViewDataSource(dataSource: [], owner: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension;
-        tableView.estimatedRowHeight = 100;
-        tableView.register(R.nib.repositoriesTableViewCell)
+        setupTableView()
         setupRefresh()
         // Do any additional setup after loading the view.
     }
@@ -27,6 +26,23 @@ class RepositoriesViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    private func setupTableView() {
+        self.tableView = UITableView(frame: CGRect.zero, style: .grouped)
+        if #available(iOS 11.0, *) {
+            self.tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(R.nib.repositoriesTableViewCell)
+        tableView.delegate = dataSource
+        tableView.dataSource = dataSource
     }
     
 
@@ -44,6 +60,16 @@ extension RepositoriesViewController {
 // MARK: Network
 extension RepositoriesViewController: NetworkAgent {
     @objc func loadData() {
+        page = 1
+        netWorkRequest()
+    }
+    
+    @objc func loadMoreData() {
+        page += 1
+        repositoriesRequest.page = page
+        netWorkRequest()
+    }
+    private func netWorkRequest() {
         request(repositoriesRequest) { (response, _) in
             if let response = response {
                 if self.page == 1 {
@@ -52,6 +78,7 @@ extension RepositoriesViewController: NetworkAgent {
                 }
                 self.repositoriesList += response.data
                 self.checkFooterState(response.data)
+                self.dataSource.repositoriesList = self.repositoriesList
                 self.tableView.reloadData()
             } else {
                 self.tableView.endHeaderRefreshing()
@@ -60,13 +87,7 @@ extension RepositoriesViewController: NetworkAgent {
         }
     }
     
-    @objc func loadMoreData() {
-        page += 1
-        repositoriesRequest.page = page
-        loadData()
-    }
-    
-    func checkFooterState(_ response: [RepositoriesModelElement]) {
+    private func checkFooterState(_ response: [RepositoriesModel]) {
         if response.count > 0 {
             self.tableView.mj_footer.isHidden = false
         }
@@ -79,24 +100,33 @@ extension RepositoriesViewController: NetworkAgent {
     }
 }
 
-
-
-// MARK: delegate-datasource
-extension RepositoriesViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.repositoriesList.count
-    }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.repositoriesTableViewCell, for: indexPath)!
-        cell.repositories = repositoriesList[indexPath.row]
-        return cell;
-    }
-    
-}
-
-
-
-
+//
+//
+//// MARK: delegate-datasource
+//extension RepositoriesViewController {
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.repositoriesList.count
+//    }
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.repositoriesTableViewCell, for: indexPath)!
+//        cell.repositories = repositoriesList[indexPath.row]
+//        return cell
+//    }
+//
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 0.01
+//    }
+//
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 0.01
+//    }
+//
+//
+//}
+//
+//
+//
+//

@@ -16,11 +16,19 @@ class ProfileHeaderView: UIView {
     @IBOutlet weak var repositoriesLable: UILabel!
     @IBOutlet weak var followersLable: UILabel!
     @IBOutlet weak var followingLable: UILabel!
+    @IBOutlet weak var followButton: FollowButton!
+    
+    var profileFollowing: Bool? {
+         didSet {
+            followButton.isHidden = false
+            followButton.isSelected = !(profileFollowing!)
+        }
+    }
+
     
     var profileModel: ProfileModel? {
         didSet {
             userIcon.setImage(with: profileModel?.avatarURL)
-            
             var userName: String = (profileModel?.login)!
             if let name = profileModel?.name {
                 userName = userName + "(\(name))"
@@ -36,6 +44,11 @@ class ProfileHeaderView: UIView {
     
     // tag 0 repositories 1 followers 2 following
     @IBAction func buttonClick(_ sender: UIButton) {
+       
+        guard (profileModel != nil) else {
+            return
+        }
+        
         switch sender.tag {
         case 0:
             printLog("repositories")
@@ -65,5 +78,28 @@ class ProfileHeaderView: UIView {
         
     }
     
+    @IBAction func followButtonClick(_ sender: UIButton) {
+        
+       followUser()
+        
+    }
 
+
+}
+
+
+extension ProfileHeaderView: NetworkAgent {
+    func followUser() {
+    
+        let action = profileFollowing! ? DeveloperFollowingRequest.FollowingAction.Unfollowing : DeveloperFollowingRequest.FollowingAction.Following
+        let following = DeveloperFollowingRequest(profileModel!.login, followingAction: action)
+        request(following, hander: { (respone, dataResponse) in
+            let statusCode = dataResponse.response?.statusCode
+            print("----\(String(describing: statusCode))---")
+            if statusCode == 204 {
+                self.followButton.isSelected = !self.followButton.isSelected
+            }
+            //            self.headerView.profileFollowing = (statusCode == 204)
+        })
+    }
 }

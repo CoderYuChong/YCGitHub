@@ -44,7 +44,7 @@ extension DecodableJSON {
 
     
 //    static func keyPath() -> String? {
-//        return nil;
+//        return nil
 //    }
 }
 

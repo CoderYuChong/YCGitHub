@@ -13,17 +13,28 @@ class DeveloperViewController: UITableViewController {
     var developerPath: String!
     var page: Int = 1
     lazy var developerRequest: DeveloperRequest = DeveloperRequest(developerPath)
-    
     lazy var developerList: [DeveloperModel] = [DeveloperModel]()
-
+    lazy var dataSource: DeveloperTableViewDataSource = DeveloperTableViewDataSource(dataSource: [], owner: self)
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension;
-        tableView.estimatedRowHeight = 100;
-        tableView.register(R.nib.develpoerTableViewCell)
+        setupTableView()
         setupRefresh()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    private func setupTableView() {
+        self.tableView = UITableView(frame: CGRect.zero, style: .grouped)
+        if #available(iOS 11.0, *) {
+            self.tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
+        tableView.rowHeight = 80
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
+        tableView.estimatedRowHeight = 80
+        tableView.register(R.nib.develpoerTableViewCell)
+        tableView.delegate = dataSource
+        tableView.dataSource = dataSource
     }
 }
 
@@ -40,6 +51,17 @@ extension DeveloperViewController {
 // MARK: Network
 extension DeveloperViewController: NetworkAgent {
     @objc func loadData() {
+        page = 1
+        netWorkRequest()
+    }
+    
+    @objc func loadMoreData() {
+        page += 1
+        developerRequest.page = page
+        netWorkRequest()
+    }
+    
+    private func netWorkRequest() {
         request(developerRequest) { (response, _) in
             if let response = response {
                 if self.page == 1 {
@@ -48,7 +70,7 @@ extension DeveloperViewController: NetworkAgent {
                 }
                 self.developerList += response.data
                 self.checkFooterState(response.data)
-                self.checkUserFollowing(response.data)
+                self.dataSource.dataSource = self.developerList
                 self.tableView.reloadData()
             } else {
                 self.tableView.endHeaderRefreshing()
@@ -57,30 +79,7 @@ extension DeveloperViewController: NetworkAgent {
         }
     }
     
-    @objc func loadMoreData() {
-        page += 1
-        developerRequest.page = page
-        loadData()
-    }
-    
-    func checkUserFollowing(_ develpers: [DeveloperModel]) {
-        for user in develpers {
-            let following = DeveloperFollowingRequest(user.login)
-            request(following, hander: { (respone, dataResponse) in
-                let statusCode = dataResponse.response?.statusCode
-                print("----\(String(describing: statusCode))---")
-                if statusCode == 204 { // follow
-//                    user.f
-                } else {
-                    
-                }
-            })
-            
-        }
-        
-    }
-    
-    func checkFooterState(_ response: [DeveloperModel]) {
+    private func checkFooterState(_ response: [DeveloperModel]) {
         if response.count > 0 {
             self.tableView.mj_footer.isHidden = false
         }
@@ -91,23 +90,42 @@ extension DeveloperViewController: NetworkAgent {
         }
     }
 }
-
-
-
-// MARK: delegate-datasource
-extension DeveloperViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.developerList.count
-    }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.develpoerTableViewCell, for: indexPath)!
-        cell.develpoer = developerList[indexPath.row]
-        return cell;
-    }
-    
-}
-
+//
+//
+//
+//// MARK: delegate-datasource
+//extension DeveloperViewController {
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return self.developerList.count
+//    }
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 1
+//    }
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.develpoerTableViewCell, for: indexPath)!
+//        cell.develpoer = developerList[indexPath.section]
+//        return cell
+//    }
+//
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        let develop = developerList[indexPath.section]
+//        let profileVC = R.storyboard.profile.profileViewController()!
+//        profileVC.userName = develop.login
+//        profileVC.profileViewType = .others
+//        profileVC.title = develop.login
+//        self.navigationController?.pushViewController(profileVC, animated: true)
+//    }
+//
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 0.01
+//    }
+//
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 0.01
+//    }
+//
+//}
+//
 

@@ -13,8 +13,8 @@ class TrendingViewController: TwitterPagerTabStripViewController {
 
     override func viewDidLoad() {
         settings.style.titleColor = navBarTitleColor
-        settings.style.selectedDotColor = themeColor;
-        settings.style.dotColor = .lightGray;
+        settings.style.selectedDotColor = themeColor
+        settings.style.dotColor = .lightGray
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -23,7 +23,7 @@ class TrendingViewController: TwitterPagerTabStripViewController {
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         printLog("-------pagerTabStripController--------")
         let repositories = RepositoriesTrendingViewController()
-        let develpoer = DevelpoerTrendingViewController();
+        let develpoer = DevelpoerTrendingViewController()
         return [repositories,develpoer]
     }
     

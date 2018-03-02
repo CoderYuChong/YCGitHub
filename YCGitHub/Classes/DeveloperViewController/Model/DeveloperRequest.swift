@@ -7,15 +7,36 @@
 //
 
 import Foundation
+import Alamofire
 
 class DeveloperFollowingRequest: BaseRequest {
     typealias Response = BaseResponse
+    
+    enum FollowingAction {
+        case Following
+        case Unfollowing
+        case CheckFollow
+    }
     var userName: String
+    var followingAction: FollowingAction
     var path: String {
         return "user/following/\(userName)"
     }
-    init(_ userName: String) {
+    var method: HTTPMethod {
+        switch followingAction {
+        case .Following:
+            return .put
+        case .Unfollowing:
+            return .delete
+        case .CheckFollow:
+            return .get
+//        default:
+//            return .get
+        }
+    }
+    init(_ userName: String, followingAction: FollowingAction) {
         self.userName = userName
+        self.followingAction = followingAction
     }
 }
 
@@ -40,7 +61,7 @@ class DeveloperRequest: BaseRequest {
 
 
 struct Developer: DecodableJSON {
-    var data: [DeveloperModel]
+    let data: [DeveloperModel]
 }
 
 struct DeveloperModel: Codable {
@@ -52,8 +73,6 @@ struct DeveloperModel: Codable {
     let receivedEventsURL, type: String
     let siteAdmin: Bool
     
-//    /// 是否follow
-//    var following: Bool?
     enum CodingKeys: String, CodingKey {
         case login, id
         case avatarURL = "avatar_url"

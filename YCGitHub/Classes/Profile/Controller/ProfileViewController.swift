@@ -16,6 +16,7 @@ enum ProfileViewType {
 let profileCellID = "ProfileCellID"
 class ProfileViewController: UITableViewController {
 
+    @IBOutlet weak var settingItem: UIBarButtonItem!
     var profileViewType: ProfileViewType = .mine
     var profileModel: ProfileModel?
     let normalCellID = "normalCellID"
@@ -31,6 +32,10 @@ class ProfileViewController: UITableViewController {
         super.viewDidLoad()
         setUpTableView()
         setupRefresh()
+        if  profileViewType != .mine {
+            self.navigationItem.rightBarButtonItem = nil
+        }
+//        settingItem.
 //        loadProfileData()
         // Do any additional setup after loading the view.
     }
@@ -67,12 +72,27 @@ extension ProfileViewController: NetworkAgent {
         request(ProfileRequest(userName: userName)) { (response, _) in
             self.tableView.endHeaderRefreshing()
             if let response = response {
+                self.profileModel = response
+                self.checkUserFollowing(response)
                 self.setupViewModel(response)
                 self.tableView.reloadData()
             }
         }
     }
     
+    func checkUserFollowing(_ profileModel: ProfileModel) {
+        if profileViewType == .mine {
+            return
+        }
+        let following = DeveloperFollowingRequest(profileModel.login, followingAction: .CheckFollow)
+        request(following, hander: { (respone, dataResponse) in
+            let statusCode = dataResponse.response?.statusCode
+            print("----\(String(describing: statusCode))---")
+             self.headerView.profileFollowing = (statusCode == 204)
+        })
+
+
+    }
     private func setupViewModel(_ profileModel: ProfileModel) {
         let starred = ProfileViewModel(profileRowType: .Starred, iconName: "", url: profileModel.starredURL)
         let event = ProfileViewModel(profileRowType: .Event, iconName: "", url: profileModel.eventsURL)
@@ -87,7 +107,7 @@ extension ProfileViewController: NetworkAgent {
         }
         dataSource = ProfileTableViewControllerDataSource(dataSource: sectionArr, owner: self)
         headerView.profileModel = profileModel
-        self.profileModel = profileModel
+        title = profileModel.login
         tableView.dataSource = dataSource
         tableView.delegate = dataSource
     }

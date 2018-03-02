@@ -24,7 +24,7 @@ class LanguageScreeningTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        languageColorView.layer.cornerRadius = 10.0;
+        languageColorView.layer.cornerRadius = 10.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -27,7 +27,7 @@ class RepositoriesTableViewCell: UITableViewCell {
     
     
     
-    var repositories: RepositoriesModelElement? {
+    var repositories: RepositoriesModel? {
         didSet {
             respoNameLable.text = repositories?.fullName
             respoDescLable.text = repositories?.description

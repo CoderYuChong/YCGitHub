@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 class ProfileTableViewControllerDataSource: NSObject,UITableViewDataSource {
     var dataSource: [ProfileViewModel]
@@ -38,11 +39,12 @@ extension ProfileTableViewControllerDataSource: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let model = dataSource[indexPath.row]
-        routing(model.profileRowType)
+        routing(model)
         
     }
     
-    private func routing(_ profileRowType: ProfileRowType) {
+    private func routing(_ model: ProfileViewModel) {
+        let profileRowType = model.profileRowType
         
         switch profileRowType {
         case .Starred:
@@ -51,6 +53,16 @@ extension ProfileTableViewControllerDataSource: UITableViewDelegate {
             let name = (self.owner?.profileModel?.login)!
             repositories.repositoriesPath = "users/\(name)/starred"
             self.owner?.navigationController?.pushViewController(repositories, animated: true)
+        case .Blog:
+            let url = URL(string: model.url)!
+            let vc = SFSafariViewController(url: url)
+            if #available(iOS 11.0, *) {
+                vc.dismissButtonStyle = .close
+            } else {
+                // Fallback on earlier versions
+            }
+            self.owner?.present(vc, animated: true, completion: nil)
+//            self.owner?.navigationController?.pushViewController(vc, animated: true)
         default: break
             
         }
