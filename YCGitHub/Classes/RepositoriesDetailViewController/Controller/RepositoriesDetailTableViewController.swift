@@ -11,6 +11,8 @@ import UIKit
 class RepositoriesDetailTableViewController: UITableViewController {
     var repositoriesName: String = ""
     var repositoriesModel: RepositoriesModel?
+    var starred: Bool = false
+    var watch: Bool = false
     lazy var dataSource: RepositoriesDetailTableViewDataSource = RepositoriesDetailTableViewDataSource(owner: self)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,10 @@ class RepositoriesDetailTableViewController: UITableViewController {
         } else {
             setupRefresh()
         }
+        
+        repositoriesStateHandle(action: .starred, folllow: .CheckFollow)
+        repositoriesStateHandle(action: .watch, folllow: .CheckFollow)
+
     }
     private func setupNav() {
         let barItem = UIBarButtonItem(image: R.image.icon_profile_share(), style: .plain, target: self, action: #selector(repoAction))
@@ -52,11 +58,13 @@ class RepositoriesDetailTableViewController: UITableViewController {
     @objc private func repoAction() {
         let aleart = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         // 2.创建并添加按钮
-        let starAction = UIAlertAction(title: "Star", style: .default) { (action) in
+        
+        let starAction = UIAlertAction(title: starred ? "UnStar" : "Star", style: .default) { (action) in
+            self.repositoriesStateHandle(action: .starred, folllow: self.starred ? .Unfollowing: .Following)
             
         }
-        let watchlAction = UIAlertAction(title: "Watch", style: .default) { (action) in
-            
+        let watchlAction = UIAlertAction(title: watch ? "UnWatch" : "Watch", style: .default) { (action) in
+            self.repositoriesStateHandle(action: .watch, folllow: self.watch ? .Unfollowing: .Following)
         }
         let forkAction = UIAlertAction(title: "Fork", style: .default) { (action) in
             
@@ -89,6 +97,46 @@ extension RepositoriesDetailTableViewController: NetworkAgent {
             }
         }
     }
+    
+    
+    private func repositoriesStateHandle(action: RepositoriesStateRequest.Action, folllow: RepositoriesStateRequest.Following) {
+        
+        let starred = RepositoriesStateRequest(repositoriesName, action: action, followingAction: folllow)
+        request(starred) { (response, dataResponse) in
+            let statusCode = dataResponse.response?.statusCode
+            
+            switch action {
+            case .watch:
+                print("")
+                switch folllow {
+                case .CheckFollow:
+                    self.watch = (statusCode == 204)
+                case .Following:
+                    self.watch = (statusCode == 204)
+                    YCHUD.show(title: "watch \"\(self.repositoriesName)\" success", theme: .success)
+                case .Unfollowing:
+                    self.watch = !(statusCode == 204)
+                    YCHUD.show(title: "unwatch \"\(self.repositoriesName)\" success", theme: .success)
+                }
+            case .starred:
+                switch folllow {
+                case .CheckFollow:
+                    self.starred = (statusCode == 204)
+                case .Following:
+                    self.starred = (statusCode == 204)
+                    YCHUD.show(title: "star \"\(self.repositoriesName)\" success", theme: .success)
+                case .Unfollowing:
+                    self.starred = !(statusCode == 204)
+                    YCHUD.show(title: "unstar \"\(self.repositoriesName)\" success", theme: .success)
+
+                }
+                
+            }
+        }
+        
+        
+    }
+    
     
     
     private func handelData() {

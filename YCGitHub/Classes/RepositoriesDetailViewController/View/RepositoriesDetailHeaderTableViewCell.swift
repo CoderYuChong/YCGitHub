@@ -30,11 +30,11 @@ class RepositoriesDetailHeaderTableViewCell: UITableViewCell {
             repositoriesDescLable.text = repositoriesModel.description
             let attributedText = NSMutableAttributedString(string: repositoriesModel.fullName)
             attributedText.yy_font = UIFont.systemFont(ofSize: 14)
-            attributedText.yy_color = UIColor("0x107BD7")
+            attributedText.yy_color = repoTitleColor
             
             if let userName = repositoriesModel.owner?.login, repositoriesModel.fullName.contains(userName) {
                 let range = NSRange(location: 0,length: userName.count)
-                attributedText.yy_setTextHighlight(range, color: UIColor("0x107BD7"), backgroundColor: UIColor.clear) { (containerView, text, range, rect) in
+                attributedText.yy_setTextHighlight(range, color: repoTitleColor, backgroundColor: UIColor.clear) { (containerView, text, range, rect) in
                     self.userButtonClick(nil)
                 }
             }

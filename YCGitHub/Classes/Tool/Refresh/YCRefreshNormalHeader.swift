@@ -8,12 +8,11 @@
 
 import UIKit
 import MJRefresh
-
-
+import AVFoundation
 
 extension UIScrollView {
     func headerRefresh(target: Any, refreshingAction: Selector, beginRefreshing: Bool = true){
-        let header =  MJRefreshNormalHeader()
+        let header = YCRefreshHeader()
         header.stateLabel.isHidden = true
         header.lastUpdatedTimeLabel.isHidden = true
         header.arrowView.image = R.image.icon_arrow()
@@ -24,6 +23,7 @@ extension UIScrollView {
         }
         
     }
+    
     func footerRefresh(target: Any, refreshingAction: Selector, automaticallyRefresh: Bool = true, triggerAutomaticallyRefreshPercent: CGFloat = 1.0) {
         // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
         let footer = MJRefreshAutoNormalFooter(refreshingTarget: target, refreshingAction: refreshingAction)
@@ -54,5 +54,29 @@ extension UIScrollView {
     }
     
     
+}
+
+
+class YCRefreshHeader: MJRefreshNormalHeader {
+    //监听控件的刷新状态
+    override var state: MJRefreshState {
+        didSet {
+            switch (state) {
+            case .pulling:
+                print("----pulling----")
+                AudioServicesPlaySystemSound(1519)
+//                if #available(iOS 10.0, *) {
+//                    let feedBack = UIImpactFeedbackGenerator(style: .light)
+//                    feedBack.prepare()
+//                    feedBack.impactOccurred()
+//                } else {
+//                    // Fallback on earlier versions
+//                }
+                
+            default:
+                break
+            }
+        }
+    }
 }
 

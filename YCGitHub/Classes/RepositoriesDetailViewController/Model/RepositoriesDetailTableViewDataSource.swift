@@ -80,4 +80,38 @@ class RepositoriesDetailTableViewDataSource: NSObject, UITableViewDataSource, UI
         return 10
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+       
+        guard let section = Section(rawValue: indexPath.section) else {
+            fatalError()
+        }
+        print(indexPath.row)
+        
+        print(section)
+        switch section {
+        case .header:
+            print("header")
+        case .todos:
+            let rowData = rowDatas[indexPath.row]
+            switch rowData.repositoriesDetailRowType {
+            case .language:
+                let repo = RepositoriesContentViewController()
+                repo.repositoriesName = (repositoriesModel?.fullName)!
+                repo.contentsPath = ""
+                self.owner?.navigationController?.pushViewController(repo, animated: true)
+            default: break
+            }
+      
+            
+        default: break
+            
+        }
+        
+        
+//        RepositoriesContentViewController
+    }
+    
+    
+    
 }

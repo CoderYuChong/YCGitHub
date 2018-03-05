@@ -15,7 +15,8 @@ import SwiftMessages
 extension NetworkAgent {
     @discardableResult
     func request<T: BaseRequest> (_ form: T, hander: @escaping (T.Response?, DefaultDataResponse) -> Void) -> DataRequest {
-        let url = form.host + form.path
+        let tempUrl = form.host + form.path
+        let url = tempUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         printLog(url)
         let dataRequest = Alamofire.request(url, method: form.method, parameters: form.parameters(), encoding: form.encoding(), headers: form.headers())
         

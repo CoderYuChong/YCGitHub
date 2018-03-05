@@ -30,9 +30,11 @@ class YCHUD: NSObject {
     class func show(title: String, layout: MessageView.Layout = .cardView, theme: Theme = .warning, duration: SwiftMessages.Duration = .seconds(seconds: 1)) {
         let view: MessageView =  MessageView.viewFromNib(layout: layout)
         view.configureTheme(theme, iconStyle: .light)
-        view.configureContent(title: title, body: "")
+        view.configureContent(title: "", body: title)
         view.button?.isHidden = true
-        view.bodyLabel?.isHidden = true
+        view.bodyLabel?.isHidden = false
+        view.titleLabel?.isHidden = true
+        view.bodyLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         
         var config = SwiftMessages.defaultConfig
         config.presentationStyle = .top
