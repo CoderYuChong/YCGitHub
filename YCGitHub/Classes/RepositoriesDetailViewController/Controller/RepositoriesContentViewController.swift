@@ -17,7 +17,7 @@ class RepositoriesContentViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = repositoriesName
+//        title = repositoriesName
         setUpTableView()
         setupRefresh()
     }
@@ -77,16 +77,18 @@ class RepositoriesContentViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let content = contentList[indexPath.section]
         if content.type == .dir {
-            
             let repoContentVC = RepositoriesContentViewController()
             repoContentVC.repositoriesName = repositoriesName
             repoContentVC.contentsPath = content.path
+            repoContentVC.title = content.name
             self.navigationController?.pushViewController(repoContentVC, animated: true)
             
+        } else {
+            let fileVC =  FileContentViewController()
+            fileVC.htmlUrl = content.htmlURL
+            fileVC.title = content.name
+            self.navigationController?.pushViewController(fileVC, animated: true)
         }
-
-        
-        
     }
     
     

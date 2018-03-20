@@ -19,11 +19,12 @@ class RepositoriesDetailTableViewController: UITableViewController {
         setupNav()
         setUpTableView()
         if let repositoriesModel = repositoriesModel {
-            repositoriesName = repositoriesModel.name
+            repositoriesName = repositoriesModel.fullName
             handelData()
         } else {
             setupRefresh()
         }
+        
         
         repositoriesStateHandle(action: .starred, folllow: .CheckFollow)
         repositoriesStateHandle(action: .watch, folllow: .CheckFollow)
@@ -107,10 +108,12 @@ extension RepositoriesDetailTableViewController: NetworkAgent {
             
             switch action {
             case .watch:
-                print("")
+               
                 switch folllow {
                 case .CheckFollow:
                     self.watch = (statusCode == 204)
+                    print("CheckFollow watch \(self.watch)")
+
                 case .Following:
                     self.watch = (statusCode == 204)
                     YCHUD.show(title: "watch \"\(self.repositoriesName)\" success", theme: .success)
@@ -122,6 +125,7 @@ extension RepositoriesDetailTableViewController: NetworkAgent {
                 switch folllow {
                 case .CheckFollow:
                     self.starred = (statusCode == 204)
+                    print("CheckFollow  starred \(self.starred)")
                 case .Following:
                     self.starred = (statusCode == 204)
                     YCHUD.show(title: "star \"\(self.repositoriesName)\" success", theme: .success)

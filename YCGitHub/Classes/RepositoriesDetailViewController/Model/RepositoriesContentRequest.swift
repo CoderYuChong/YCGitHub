@@ -62,7 +62,7 @@ struct RepositoriesContentModel: Codable {
                 return R.image.icon_file_markdown()
             } else if exten == "text" {
                 return R.image.icon_file_text()
-            } else if exten == ".jpg" || exten == ".png" || exten == ".gif" {
+            } else if exten == "jpg" || exten == "png" || exten == "gif" {
                 return R.image.icon_file_image()
             } else if exten.count == 0 {
                 return R.image.icon_file_data()

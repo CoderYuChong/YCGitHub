@@ -20,4 +20,5 @@ target 'YCGitHub' do
   pod 'SVProgressHUD'
   pod 'NJKWebViewProgress'
   pod 'YYText'
+  pod 'Bugly'
 end

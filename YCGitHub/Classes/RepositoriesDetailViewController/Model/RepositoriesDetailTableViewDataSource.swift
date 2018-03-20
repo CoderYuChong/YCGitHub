@@ -99,6 +99,7 @@ class RepositoriesDetailTableViewDataSource: NSObject, UITableViewDataSource, UI
                 let repo = RepositoriesContentViewController()
                 repo.repositoriesName = (repositoriesModel?.fullName)!
                 repo.contentsPath = ""
+                repo.title = (repositoriesModel?.fullName)!
                 self.owner?.navigationController?.pushViewController(repo, animated: true)
             default: break
             }
