@@ -53,10 +53,7 @@ class RepositoriesDetailHeaderTableViewCell: UITableViewCell {
     @IBAction func userButtonClick(_ sender: UIButton?) {
         print("userButtonClick")
         if let userName = repositoriesModel?.owner?.login {
-            let profileVC = R.storyboard.profile.profileViewController()!
-            profileVC.userName = userName
-            profileVC.profileViewType = .others
-            profileVC.title = userName
+            let profileVC = Routing.profileViewController(userName, profileViewType: .others)
             self.superViewController()?.navigationController?.pushViewController(profileVC, animated: true)
         }
         
@@ -71,23 +68,19 @@ class RepositoriesDetailHeaderTableViewCell: UITableViewCell {
         
         switch sender.tag {
         case 0:
-            let developerVC = DeveloperViewController()
+            let developerVC = Routing.developerViewController("repos/" + repositoriesModel.fullName + "/stargazers")
             developerVC.title = "Stargazers"
-            developerVC.developerPath = "repos/" + repositoriesModel.fullName + "/stargazers"
             self.superViewController()?.navigationController?.pushViewController(developerVC, animated: true)
             print("Stargazers")
         case 1:
-            let developerVC = DeveloperViewController()
+            let developerVC = Routing.developerViewController("repos/" + repositoriesModel.fullName + "/subscribers")
             developerVC.title = "Watchers"
-            developerVC.developerPath = "repos/" + repositoriesModel.fullName + "/subscribers"
             self.superViewController()?.navigationController?.pushViewController(developerVC, animated: true)
             print("Watchers2")
         case 2:
-            let repoVC = RepositoriesViewController()
+            let repoVC = Routing.repositoriesViewController("repos/" + repositoriesModel.fullName + "/forks")
             repoVC.title = "Forks"
-            repoVC.repositoriesPath = "repos/" + repositoriesModel.fullName + "/forks"
             self.superViewController()?.navigationController?.pushViewController(repoVC, animated: true)
-//            repos/apple/swift-nio/forks
         default:
             print("----")
         }

@@ -91,8 +91,7 @@ extension RepositoriesTrendingViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let repo = repositoriesList[indexPath.row]
-        let repoVC = RepositoriesDetailTableViewController()
-        repoVC.repositoriesName = repo.repo!
+        let repoVC = Routing.repositoriesDetailTableViewController(repo.repo!)
         self.navigationController?.pushViewController(repoVC, animated: true)
         
     }

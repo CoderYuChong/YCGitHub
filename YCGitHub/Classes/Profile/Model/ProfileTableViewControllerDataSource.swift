@@ -48,10 +48,9 @@ extension ProfileTableViewControllerDataSource: UITableViewDelegate {
         
         switch profileRowType {
         case .Starred:
-            let repositories = RepositoriesViewController()
-            repositories.title = "Starred"
             let name = (self.owner?.profileModel?.login)!
-            repositories.repositoriesPath = "users/\(name)/starred"
+            let repositories = Routing.repositoriesViewController("users/\(name)/starred")
+            repositories.title = "Starred"
             self.owner?.navigationController?.pushViewController(repositories, animated: true)
         case .Blog:
             let url = URL(string: model.url)!

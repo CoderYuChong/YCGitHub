@@ -52,24 +52,21 @@ class ProfileHeaderView: UIView {
         switch sender.tag {
         case 0:
             printLog("repositories")
-            let repositories = RepositoriesViewController()
-            repositories.title = "Repositories"
             let name = (profileModel?.login)!
-            repositories.repositoriesPath = "users/\(name)/repos"
+            let repositories = Routing.repositoriesViewController("users/\(name)/repos")
+            repositories.title = "Repositories"
             self.superViewController()?.navigationController?.pushViewController(repositories, animated: true)
         case 1:
             printLog("followers")
-            let develpoer = DeveloperViewController()
-            develpoer.title = "Followers"
             let name = (profileModel?.login)!
-            develpoer.developerPath = "users/\(name)/followers"
+            let develpoer = Routing.developerViewController("users/\(name)/followers")
+            develpoer.title = "Followers"
             self.superViewController()?.navigationController?.pushViewController(develpoer, animated: true)
         case 2:
             printLog("following")
-            let develpoer = DeveloperViewController()
-            develpoer.title = "Following"
             let name = (profileModel?.login)!
-            develpoer.developerPath = "users/\(name)/following"
+            let develpoer = Routing.developerViewController("users/\(name)/following")
+            develpoer.title = "Following"
             self.superViewController()?.navigationController?.pushViewController(develpoer, animated: true)
         default:
             printLog("default")

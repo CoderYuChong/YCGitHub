@@ -44,8 +44,7 @@ extension RepositoriesTableViewDataSource: UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let repoDetailVC =  RepositoriesDetailTableViewController()
-        repoDetailVC.repositoriesModel = repositoriesList[indexPath.row]
+        let repoDetailVC = Routing.repositoriesDetailTableViewController("", repositoriesModel: repositoriesList[indexPath.row])
         self.owner?.navigationController?.pushViewController(repoDetailVC, animated: true)
     }
     

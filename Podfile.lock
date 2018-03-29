@@ -4,7 +4,7 @@ PODS:
   - ESTabBarController-swift (2.6.1)
   - HandyJSON (4.0.0-beta.1)
   - KeychainAccess (3.1.0)
-  - Kingfisher (4.6.3)
+  - Kingfisher (4.6.4)
   - MJRefresh (3.1.15.3)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
@@ -44,7 +44,7 @@ SPEC CHECKSUMS:
   ESTabBarController-swift: 1e629e60bc6a87c1ea92a5309489b9f8dde15fa2
   HandyJSON: 428bb18e2c34c2a77361accebf90cf64e4f74118
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
-  Kingfisher: 98e6d5b5e807645743e8ed5ececd25d688d38452
+  Kingfisher: 68498a706e46c2a050b0c9572f100e5db407f6e0
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66

@@ -122,10 +122,19 @@ extension LoginViewController {
     
     
     @IBAction func OAuthloginClick(_ sender: Any) {
-        let loginVC = LoginOAuthController()
-        loginVC.loginResult = { success in
-            self.loadProfileData()
+//        let loginVC = LoginOAuthController()
+//
+//        loginVC.loginResult = { success in
+//            self.loadProfileData()
+//        }
+        let loginVC = Routing.loginOAuthController { (success) in
+             self.loadProfileData()
         }
+//
+//        loginVC.loginResult = { success in
+//            self.loadProfileData()
+//        }
+
         self.navigationController?.pushViewController(loginVC, animated: true)
     }
 }

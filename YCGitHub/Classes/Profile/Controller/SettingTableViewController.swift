@@ -69,6 +69,9 @@ extension SettingTableViewController {
             calculateDiskCacheSize()
             tableView.reloadData()
             YCHUD.show(title: "清理成功", theme: .success)
+        } else {
+            let aboutVC = Routing.aboutViewController()
+            self.navigationController?.pushViewController(aboutVC, animated: true)
         }
     }
     

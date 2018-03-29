@@ -92,10 +92,10 @@ extension DevelpoerTrendingViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         let develop = develpoerList[indexPath.row]
-        let profileVC = R.storyboard.profile.profileViewController()!
-        profileVC.userName = develop.user
-        profileVC.profileViewType = .others
-        profileVC.title = develop.user
+        guard let userName = develop.user else {
+            return
+        }
+        let profileVC = Routing.profileViewController(userName, profileViewType: .others)
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     

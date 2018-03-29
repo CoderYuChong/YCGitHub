@@ -41,10 +41,7 @@ extension DeveloperTableViewDataSource: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let develop = dataSource[indexPath.section]
-        let profileVC = R.storyboard.profile.profileViewController()!
-        profileVC.userName = develop.login
-        profileVC.profileViewType = .others
-        profileVC.title = develop.login
+        let profileVC = Routing.profileViewController(develop.login, profileViewType: .others)
         self.owner?.navigationController?.pushViewController(profileVC, animated: true)
     }
     

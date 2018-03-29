@@ -96,10 +96,7 @@ class RepositoriesDetailTableViewDataSource: NSObject, UITableViewDataSource, UI
             let rowData = rowDatas[indexPath.row]
             switch rowData.repositoriesDetailRowType {
             case .language:
-                let repo = RepositoriesContentViewController()
-                repo.repositoriesName = (repositoriesModel?.fullName)!
-                repo.contentsPath = ""
-                repo.title = (repositoriesModel?.fullName)!
+                let repo = Routing.repositoriesContentViewController((repositoriesModel?.fullName)!, contentsPath: "", contentName: (repositoriesModel?.fullName)!)
                 self.owner?.navigationController?.pushViewController(repo, animated: true)
             default: break
             }
