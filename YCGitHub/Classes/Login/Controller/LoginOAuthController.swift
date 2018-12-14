@@ -74,7 +74,7 @@ class LoginOAuthController: UIViewController {
 }
 
 extension LoginOAuthController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         print(request.url?.absoluteString ?? "---")
         if request.url?.scheme == urlScheme {
             guard let code = request.url?.absoluteString.urlOfKey(key: "code") else {

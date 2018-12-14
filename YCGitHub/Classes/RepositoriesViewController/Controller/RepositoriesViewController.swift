@@ -39,7 +39,7 @@ class RepositoriesViewController: UITableViewController {
         tableView.estimatedSectionFooterHeight = 0
         tableView.estimatedSectionHeaderHeight = 0
         tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(R.nib.repositoriesTableViewCell)
         tableView.delegate = dataSource
         tableView.dataSource = dataSource

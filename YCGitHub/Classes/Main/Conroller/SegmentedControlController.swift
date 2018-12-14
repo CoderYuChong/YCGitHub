@@ -31,11 +31,11 @@ class SegmentedControlController: UIViewController {
 
     private func initialize() {
         let currentViewController = (viewControllers?.first)!
-        addChildViewController(currentViewController)
+        addChild(currentViewController)
         
         currentViewController.view.frame = self.view.bounds
         self.view.addSubview(currentViewController.view)
-        currentViewController.didMove(toParentViewController: self)
+        currentViewController.didMove(toParent: self)
         self.currentViewController = currentViewController
         segmentedControl =  UISegmentedControl(items: self.viewControllers!.map({$0.title ?? "NO Title"}))
         segmentedControl?.selectedSegmentIndex = 0
@@ -50,8 +50,8 @@ class SegmentedControlController: UIViewController {
     }
     
     private func cycle(fromViewController: UIViewController, toViewController: UIViewController) {
-        fromViewController.willMove(toParentViewController: nil)
-        addChildViewController(toViewController)
+        fromViewController.willMove(toParent: nil)
+        addChild(toViewController)
         toViewController.view.frame = self.view.bounds
         transition(from: fromViewController, to: toViewController, duration: 0, options: [], animations: nil) { (finished) in
               self.currentViewController = toViewController

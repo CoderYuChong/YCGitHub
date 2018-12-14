@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Bugly.start(withAppId: "")
         setupAppearance()
         LanguageScreeningDataTool.initializationData()
@@ -63,8 +63,8 @@ extension AppDelegate {
         navigationBarAppearance.tintColor = themeColor
         navigationBarAppearance.isTranslucent = false
         let textAttributes = [
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: navTitleFontSize),
-            NSAttributedStringKey.foregroundColor: navBarTitleColor
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: navTitleFontSize),
+            NSAttributedString.Key.foregroundColor: navBarTitleColor
         ]
         navigationBarAppearance.backIndicatorImage = R.image.icon_nav_back()
         navigationBarAppearance.titleTextAttributes = textAttributes

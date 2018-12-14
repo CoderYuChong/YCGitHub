@@ -9,6 +9,14 @@
 import UIKit
 
 extension UIColor {
+    
+    /// UIColor 构造
+    ///
+    /// - Parameters:
+    ///   - r: 红 0-255
+    ///   - g: 绿 0-255
+    ///   - b: 蓝 0-255
+    ///   - alpha: 0-1
     convenience init(r: CGFloat, g: CGFloat, b: CGFloat, alpha: CGFloat = 1.0) {
         self.init(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: alpha)
     }

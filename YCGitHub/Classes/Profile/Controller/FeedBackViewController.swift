@@ -24,8 +24,8 @@ class FeedBackViewController: UIViewController {
     
     private func notificationText() {
        
-        NotificationCenter.default.addObserver(self, selector: #selector(textFiledValueChange), name: .UITextViewTextDidChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(textFiledValueChange), name: .UITextFieldTextDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textFiledValueChange), name: UITextView.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textFiledValueChange), name: UITextField.textDidChangeNotification, object: nil)
 
     }
     

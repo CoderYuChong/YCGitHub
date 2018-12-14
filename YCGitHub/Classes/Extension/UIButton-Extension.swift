@@ -13,7 +13,7 @@ import Kingfisher
 extension UIButton {
     
     func setImage(with resource: String?,
-                  for state: UIControlState,
+                  for state: UIControl.State,
                   placeholder: UIImage? = nil,
                   options: KingfisherOptionsInfo? = nil,
                   progressBlock: DownloadProgressBlock? = nil,
@@ -28,7 +28,7 @@ extension UIButton {
     
     
     func setBackgroundImage(with resource: String?,
-                            for state: UIControlState,
+                            for state: UIControl.State,
                             placeholder: UIImage? = nil,
                             options: KingfisherOptionsInfo? = nil,
                             progressBlock: DownloadProgressBlock? = nil,

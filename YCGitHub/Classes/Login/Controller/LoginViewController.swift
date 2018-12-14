@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     
     private func setupTextField() {
-        let att = [NSAttributedStringKey.foregroundColor: UIColor("ffffff", alpha: 0.5),NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20)]
+        let att = [NSAttributedString.Key.foregroundColor: UIColor("ffffff", alpha: 0.5),NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)]
         accountTextField.attributedPlaceholder = NSAttributedString(string: "手机号码/电子邮件", attributes: att)
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "密码", attributes: att)
         passwordTextField.addTarget(self, action: #selector(textValueChanged), for: .editingChanged)

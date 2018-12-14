@@ -18,7 +18,7 @@ class RepositoriesTrendingViewController: UITableViewController, IndicatorInfoPr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.register(R.nib.repositoriesTableViewCell)
         setupRefresh()
@@ -73,7 +73,9 @@ extension RepositoriesTrendingViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.repositoriesTableViewCell, for: indexPath)!
         cell.repositoriesModel = repositoriesList[indexPath.row]
+        
         return cell
+        
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

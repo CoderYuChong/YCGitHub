@@ -49,7 +49,7 @@ class ProfileViewController: UITableViewController {
             // Fallback on earlier versions
             self.automaticallyAdjustsScrollViewInsets = false
         }
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: profileCellID)
         let tempView = UIView(frame: headerView.bounds)
         tempView.addSubview(headerView)

@@ -39,7 +39,8 @@ class YCHUD: NSObject {
         var config = SwiftMessages.defaultConfig
         config.presentationStyle = .top
         config.duration = duration
-        config.presentationContext = .window(windowLevel: UIWindowLevelNormal)
+//        config.
+//        config.presentationContext = .window(windowLevel: UIWindowLevelNormal)
         SwiftMessages.show(config: config, view: view)
         
     }
