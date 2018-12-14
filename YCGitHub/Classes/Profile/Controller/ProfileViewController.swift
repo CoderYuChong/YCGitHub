@@ -107,7 +107,7 @@ extension ProfileViewController: NetworkAgent {
         }
         dataSource = ProfileTableViewControllerDataSource(dataSource: sectionArr, owner: self)
         headerView.profileModel = profileModel
-        title = profileModel.login
+        navigationItem.title = profileModel.login
         tableView.dataSource = dataSource
         tableView.delegate = dataSource
     }
